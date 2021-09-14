@@ -1,0 +1,73 @@
+$CommonColor:#1a73e8;
+.Main-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 40px 36px;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+header{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+   
+}
+mat-form-field{
+    width: 100%;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: $CommonColor!important;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: $CommonColor !important;
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+    background-color: $CommonColor !important;
+
+}
+.but-div{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row-reverse;
+    margin-left: 0px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+.next{
+    background-color: $CommonColor;
+    color: white;
+    width: 20%;
+}
+.Signin{
+    font-family: "Google Sans",Arial,sans-serif;
+    font-size: 14px;
+    color: $CommonColor;
+    font-weight: bolder;
+}
+.Forgot{
+    @extend .Signin;
+    margin-bottom: 20px;
+}
+.inp-col{
+
+    display: flex;
+    flex-direction: column;
+}
+@media only screen and (max-width:600px) {
+    .Main-container{
+        width: 90%;
+        padding: 15px 0 0 0;
+    }
+    mat-card {
+        transition: none !important;
+        box-shadow: none !important;
+    }
+}

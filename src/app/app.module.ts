@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
-import { LoginComponent } from './Components/login/login.component';
+import { LoginComponent } from './Components/Login/login.component';
 
 @NgModule({
   declarations: [
