@@ -1,5 +1,4 @@
 <mat-card class="Main-container">
-  <div class="form-content">
     <form>
       <div>
         <header>
@@ -13,6 +12,7 @@
         <h1>Sign in</h1>
         <h2>Use your Google Account</h2>
       </div>
+      <div>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput />
@@ -21,14 +21,14 @@
           <mat-label>Password</mat-label>
           <input matInput />
         </mat-form-field>
+        </div>
         <div class="inp-col">
-        <a class="Forgot">Forgot Password?</a>
+        <a  class="Forgot">Forgot Password?</a>
         <mat-checkbox class="">Show Password</mat-checkbox>
         </div>
       <div class="but-div">
         <button mat-flat-button class="next">Login</button>
-        <a class="Signin">Create account</a>
+        <button mat-button class="Signin">Create account</button>
       </div>
     </form>
-  </div>
 </mat-card>

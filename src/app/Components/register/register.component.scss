@@ -6,6 +6,7 @@ $CommonColor:#1a73e8;
     justify-content: center;
     padding: 48px 40px 36px;
     width: 50%;
+    position: relative;
     min-width: 650px;
     margin-left: auto;
     margin-right: auto;
@@ -26,6 +27,7 @@ h1{
 .Form-content{
     display: flex;
     flex-direction: column;
+    width: 65%;
 }
 .input-div{
     display: flex;
@@ -67,14 +69,19 @@ mat-form-field{
 }
 .pass-hint{
     margin-left: 20px;
-    margin-top: 0px;
-    width: 83%;
+    margin-top: -15px;
+    width: 70%;
+    margin-bottom: 20px;
 }
 .Signin{
     font-family: "Google Sans",Arial,sans-serif;
     font-size: 14px;
     color: $CommonColor;
     font-weight: bolder;
+    &:hover{
+            color: #174ea6;
+    }
+  
 }
 .email-a{
     @extend .Signin
@@ -99,7 +106,17 @@ mat-hint{
 }
 mat-icon{
     font-size: 18px;
-    font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif
+    font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+    margin-top: -10px;
+}
+::ng-deep .mat-form-field-suffix {
+     position:unset !important; 
+}
+.password{
+    padding-bottom: 0px !important;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0px 0px 2px -1px rgb(0 0 0 / 20%), 0px 0px 4px 0px rgb(0 0 0 / 14%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
 }
 @media screen and (max-width:900px) {
     
@@ -109,6 +126,9 @@ mat-icon{
     .Main-Container{
         justify-content: unset;
         min-width: 450px;   
+    }
+    .Form-content{
+        width:100%;
     }
 
 }
@@ -127,6 +147,7 @@ mat-icon{
         box-shadow: none !important;
     }
     .but-div{
-        margin-right: 5px;
+        margin-left: 15px;
+        margin-right: 20px;
     }
 }
