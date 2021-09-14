@@ -3,9 +3,12 @@ $CommonColor:#1a73e8;
 .Main-Container{
     display: flex;
     align-items: center;
-    width: 130%;
+    justify-content: center;
     padding: 48px 40px 36px;
-    
+    width: 50%;
+    min-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 span{
     font-size: 25px;
@@ -42,10 +45,7 @@ mat-form-field{
     flex-direction: column;
 }
 .svg-div{
-    flex-direction: column;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
+    margin-left: 20px;  
 }
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: $CommonColor!important;
@@ -88,7 +88,7 @@ p{
     text-align: center;
     font-size: 16px;
     font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
-    width: 60%;
+    width: 70%;
 }
 .temp-para{
     display: flex;
@@ -101,4 +101,32 @@ mat-icon{
     font-size: 18px;
     font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif
 }
+@media screen and (max-width:900px) {
+    
+    .svg-div{
+        display: none;
+    }
+    .Main-Container{
+        justify-content: unset;
+        min-width: 450px;   
+    }
 
+}
+@media screen and (max-width:600px) {
+    .Main-Container{
+            padding: 0px;
+    }
+    .input-div{
+        flex-wrap: wrap;
+    }
+    mat-form-field{
+         width: 100%;
+    }
+    mat-card {
+        transition: none !important;
+        box-shadow: none !important;
+    }
+    .but-div{
+        margin-right: 5px;
+    }
+}
