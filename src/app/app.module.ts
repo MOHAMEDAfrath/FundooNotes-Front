@@ -15,13 +15,15 @@ import { LoginComponent } from './Components/Login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ForgotComponent } from './Components/forgot/forgot.component';
+import { ResetComponent } from './Components/reset/reset.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    ForgotComponent
+    ForgotComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

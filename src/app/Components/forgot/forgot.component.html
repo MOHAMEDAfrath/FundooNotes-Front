@@ -1,5 +1,5 @@
 <mat-card class="Main-container">
-    <form>
+    <form [formGroup]="ForgotForm">
       <div>
         <header>
           <span style="color: blue">F</span>
@@ -12,14 +12,16 @@
         <h1>Account recovery</h1>
         <h2>This helps show that this account really belongs to you</h2>
       </div>
-      <div>
+      <div class="inp-div">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput type="email"/>
+          <input matInput type="email" formControlName="email"/>
+          <mat-error *ngIf="ForgotForm.get('email')?.errors?.required">Email is required</mat-error>
+              <mat-error *ngIf="ForgotForm.get('email')?.errors?.email">Invalid Email </mat-error>
         </mat-form-field>
         </div>
       <div class="but-div">
-        <button mat-flat-button class="next" >Next</button>
+        <button mat-flat-button class="next" [routerLink] = "['/reset',getEmail()]" >Next</button>
         <button mat-button class="cancel"[routerLink] = "['/login']">Cancel</button>
       </div>
     </form>
