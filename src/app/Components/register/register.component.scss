@@ -4,7 +4,7 @@ $CommonColor:#1a73e8;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px 40px 36px;
+    padding: 20px 30px 20px;
     width: 50%;
     position: relative;
     min-width: 650px;
@@ -24,14 +24,17 @@ h1{
     margin-top: 20px;
     margin-left: 10px;
 }
-.Form-content{
+@mixin display{
     display: flex;
     flex-direction: column;
-    width: 65%;
+}
+.Form-content{
+    @include display();
+    width: 60%;
 }
 .input-div{
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 10px;
     padding: 0px;
 }
@@ -43,8 +46,7 @@ mat-form-field{
     width: 99%;
 }
 .pass-div{
-    display: flex;
-    flex-direction: column;
+    @include display();
 }
 .svg-div{
     margin-left: 20px;  
@@ -69,7 +71,7 @@ mat-form-field{
 }
 .pass-hint{
     margin-left: 20px;
-    margin-top: -15px;
+    margin-top: -5px;
     width: 70%;
     margin-bottom: 20px;
 }
@@ -116,7 +118,11 @@ mat-icon{
     padding-bottom: 0px !important;
 }
 .mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: 0px 0px 2px -1px rgb(0 0 0 / 20%), 0px 0px 4px 0px rgb(0 0 0 / 14%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    box-shadow: none;
+}
+.mat-card{
+    border: 0.5px solid #a8aaad79;
+    border-radius: 10px;
 }
 @media screen and (max-width:900px) {
     
@@ -143,8 +149,7 @@ mat-icon{
          width: 100%;
     }
     mat-card {
-        transition: none !important;
-        box-shadow: none !important;
+        border:none !important
     }
     .but-div{
         margin-left: 15px;
