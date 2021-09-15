@@ -1,0 +1,26 @@
+<mat-card class="Main-container">
+    <form>
+      <div>
+        <header>
+          <span style="color: blue">F</span>
+          <span style="color: red">u</span>
+          <span style="color: yellow">n</span>
+          <span style="color: blue">d</span>
+          <span style="color: blue">o</span>
+          <span style="color: green">o</span>
+        </header>
+        <h1>Account recovery</h1>
+        <h2>This helps show that this account really belongs to you</h2>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email"/>
+        </mat-form-field>
+        </div>
+      <div class="but-div">
+        <button mat-flat-button class="next" >Next</button>
+        <button mat-button class="cancel"[routerLink] = "['/login']">Cancel</button>
+      </div>
+    </form>
+</mat-card>
