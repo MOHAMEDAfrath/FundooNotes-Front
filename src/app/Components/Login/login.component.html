@@ -1,5 +1,5 @@
 <mat-card class="Main-container">
-    <form>
+    <form [formGroup]="LoginForm">
       <div>
         <header>
           <span style="color: blue">F</span>
@@ -15,11 +15,15 @@
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput />
+          <input matInput type="email" formControlName="email"/>
+          <mat-error *ngIf="LoginForm.get('email')?.errors?.required">Email is required</mat-error>
+              <mat-error *ngIf="LoginForm.get('email')?.errors?.email">Invalid Email </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput />
+          <input matInput type="password" formControlName="password"  [type]='hide?"text":"password"'/>
+          <mat-error *ngIf="LoginForm.get('password')?.errors?.required">Password is required</mat-error>
+              <mat-error *ngIf="LoginForm.get('password')?.errors?.pattern">Invalid Password </mat-error>
         </mat-form-field>
         </div>
         <div class="inp-col">
