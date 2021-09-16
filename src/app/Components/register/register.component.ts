@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  loading = false;
   RegisterForm!: FormGroup;
   hide = false;
   constructor(
@@ -43,22 +44,27 @@ export class RegisterComponent implements OnInit {
   }
   Register() {
     if (!this.RegisterForm.invalid) {
+      this.loading = true;
       this.userService
         .Register(this.RegisterForm.value)
         .subscribe((result: any) => {
           console.log(result);
           if (result.status == true) {
+            this.loading=false
             this.snackBar.open(result.message, '', { duration: 2500 });
             this.router.navigateByUrl('/login');
           } else {
+            this.loading=false;
             this.snackBar.open(result.message, '', { duration: 2500 });
           }
         },(error: HttpErrorResponse) => {
           if(error.error.message == "Email Already Exists! Please Login"){
+            this.loading = false
           this.snackBar.open(error.error.message,'',{duration:2500});
           this.router.navigateByUrl('/login');
           }
           else{
+            this.loading = false;
             this.snackBar.open(error.error.message,'',{duration:2500});
           }
         });

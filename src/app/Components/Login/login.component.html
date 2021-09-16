@@ -1,4 +1,6 @@
 <mat-card class="Main-container">
+  <mat-progress-bar mode = "indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div class="Form-container">
     <form [formGroup]="LoginForm">
       <div>
         <header>
@@ -35,4 +37,5 @@
         <a routerLink="/register"><button mat-button class="Signin">Create account</button></a>
       </div>
     </form>
+    </div>
 </mat-card>

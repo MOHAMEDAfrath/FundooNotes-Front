@@ -1,9 +1,12 @@
 $CommonColor:#1a73e8;
 .Main-container{
-    width: 400px;
-    padding: 50px 40px 50px;
+    width: 450px;
     margin-left: auto;
     margin-right: auto;
+    padding: 1px 0 0 !important;
+}
+.Form-container{
+    padding: 40px 40px 50px;
 }
 header{
     text-align: center;
@@ -72,12 +75,24 @@ mat-form-field{
     border:0.5px solid #a8aaad79; 
     border-radius: 15px;
 }
+.mat-progress-bar{
+    width: 94% !important;
+    margin-left: 3% !important;
+}
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #1a73e8 !important;
+}
 @media only screen and (max-width:600px) {
     .Main-container{
-        width: 80%;
-        padding: 15px 0 0 0;
+        width: 100%;
+    }
+    .Form-container{
+        padding: 40px 20px 50px;;
     }
     mat-card {
        border: none !important;
+    }
+    .mat-progress-bar{
+        display: none;
     }
 }

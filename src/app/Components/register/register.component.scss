@@ -1,10 +1,9 @@
 $CommonColor:#1a73e8;
 
 .Main-Container{
-    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 30px 20px;
+   padding: 0px !important;
     width: 50%;
     position: relative;
     min-width: 650px;
@@ -26,12 +25,18 @@ h1{
 }
 @mixin display{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .Form-content{
     @include display();
-    width: 60%;
+    width: 100%;
+    padding: 20px 30px 20px;
+    box-sizing: border-box;
+    form{
+        box-sizing: border-box;
+    }
 }
+
 .input-div{
     display: flex;
     margin-top: 15px;
@@ -49,7 +54,10 @@ mat-form-field{
     @include display();
 }
 .svg-div{
-    margin-left: 20px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
 }
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: $CommonColor!important;
@@ -68,6 +76,7 @@ mat-form-field{
     margin-left: 0px;
     margin-top: 50px;
     margin-bottom: 25px;
+    box-sizing: border-box;
 }
 .pass-hint{
     margin-left: 20px;
@@ -124,6 +133,13 @@ mat-icon{
     border: 0.5px solid #a8aaad79;
     border-radius: 10px;
 }
+.mat-progress-bar{
+    width: 94% !important;
+    margin-left: 3% !important;
+}
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #1a73e8 !important;
+}
 @media screen and (max-width:900px) {
     
     .svg-div{
@@ -135,12 +151,16 @@ mat-icon{
     }
     .Form-content{
         width:100%;
+        padding-left: 10px;
     }
 
 }
 @media screen and (max-width:600px) {
     .Main-Container{
             padding: 0px;
+    }
+    .Form-content{
+        padding: 0px;
     }
     .input-div{
         flex-wrap: wrap;
@@ -154,5 +174,8 @@ mat-icon{
     .but-div{
         margin-left: 15px;
         margin-right: 20px;
+    }
+    .mat-progress-bar{
+        display: none;
     }
 }

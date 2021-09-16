@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loading = false;
   LoginForm!:FormGroup;
   hide=true;
   constructor(private userService: UserserviceService
@@ -25,16 +26,20 @@ export class LoginComponent implements OnInit {
   }
   Login(){
     if(!this.LoginForm.invalid){
+      this.loading = true;
       this.userService.Login(this.LoginForm.value)
       .subscribe((result : any)=>{
           if(result.status == true){
+            this.loading = false;
             this.snackBar.open(result.message,'',{duration:2500});
           }
       },(error: HttpErrorResponse) => {
         if(error.error.message == "Login Failed ,Invalid Credentials !"){
+          this.loading = false;
         this.snackBar.open(error.error.message,'',{duration:2500});
         }
         else{
+          this.loading = false;
           this.snackBar.open(error.error.message,'',{duration:2500});
         }
       });

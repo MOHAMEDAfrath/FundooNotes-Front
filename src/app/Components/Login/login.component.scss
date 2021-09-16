@@ -1,9 +1,12 @@
 $CommonColor:#1a73e8;
 .Main-container{
     width: 450px;
-    padding: 48px 50px 36px;
+    padding: 0px !important;
     margin-left: auto;
     margin-right: auto;
+}
+.Form-container{
+    padding: 40px 40px 50px;
 }
 header{
     text-align: center;
@@ -43,6 +46,13 @@ mat-form-field{
     width: 20%;
     font-weight: bold;
 }
+.mat-progress-bar{
+    width: 94% !important;
+    margin-left: 3% !important;
+}
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #1a73e8 !important;
+}
 @mixin atag{
     font-family: "Google Sans",Arial,sans-serif;
     font-size: 14px;
@@ -66,18 +76,21 @@ mat-form-field{
     flex-direction: column;
 }
 .mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: 0px 0px 2px -1px rgb(0 0 0 / 20%), 0px 0px 4px 0px rgb(0 0 0 / 14%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    box-shadow: none;
+    border:0.5px solid #a8aaad79; 
+    border-radius: 15px;
 }
 a{
     text-decoration: none;
 }
 @media only screen and (max-width:600px) {
     .Main-container{
-        width: 80%;
-        padding: 15px 0 0 0;
+        width: 100%;
     }
     mat-card {
-        transition: none !important;
-        box-shadow: none !important;
+       border: none !important;
+    }
+    .mat-progress-bar{
+        display: none;
     }
 }
