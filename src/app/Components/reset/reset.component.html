@@ -16,7 +16,7 @@
       <div  class="input-div">
         <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput type="password" type="password" formControlName = "password"  [type]='hide?"text":"password"'>
+            <input matInput type="password" type="password" formControlName = "password"  [type]='hide?"text":"password"' >
             <mat-error *ngIf="ResetForm.get('password')?.errors?.required">Password is required</mat-error>
               <mat-error *ngIf="ResetForm.get('password')?.errors?.pattern">Invalid Password </mat-error>
           </mat-form-field>
