@@ -30,4 +30,11 @@ export class UserserviceService {
    let params = new HttpParams().set('email',data.email);
     return this.httpService.post(`${environment.baseUrl}/api/ForgotPassword`,params);
   }
+  Reset(email:string,data : any){
+    let params = {
+      EmailId: email,
+      Password:data.password
+    }
+    return this.httpService.put(`${environment.baseUrl}/api/resetPassword`,params);
+  }
 }
