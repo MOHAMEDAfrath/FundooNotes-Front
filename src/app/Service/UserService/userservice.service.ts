@@ -18,4 +18,11 @@ export class UserserviceService {
       }
       return this.httpService.post(`${environment.baseUrl}/api/register`,params);
   }
+  Login(data:any){
+    const params = {
+      EmailId: data.email,
+      Password:data.password
+    }
+    return this.httpService.post(`${environment.baseUrl}/api/login`,params);
+  }
 }
