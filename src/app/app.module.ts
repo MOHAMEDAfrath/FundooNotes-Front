@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ForgotComponent } from './Components/forgot/forgot.component';
 import { ResetComponent } from './Components/reset/reset.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { ResetComponent } from './Components/reset/reset.component';
     MatCheckboxModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
