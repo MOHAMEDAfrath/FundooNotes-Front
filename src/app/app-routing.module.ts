@@ -4,11 +4,10 @@ import { ForgotComponent } from './Components/forgot/forgot.component';
 import { LoginComponent } from './Components/Login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ResetComponent } from './Components/reset/reset.component';
-
 const routes: Routes = [{path:'register',component:RegisterComponent},
 {path:'login',component:LoginComponent},
 {path:'forgot',component:ForgotComponent},
-{path:'reset/:email',component:ResetComponent}
+{path:"reset/:token",component:ResetComponent}
 ];
 
 @NgModule({

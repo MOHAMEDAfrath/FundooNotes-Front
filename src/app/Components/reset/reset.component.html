@@ -1,4 +1,4 @@
-<mat-card class="Main-container">
+<mat-card class="Main-container" *ngIf="disState">
   <form [formGroup]="ResetForm">
     <div>
       <header>
@@ -57,3 +57,4 @@
     </div>
   </form>
 </mat-card>
+

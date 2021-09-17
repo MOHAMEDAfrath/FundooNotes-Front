@@ -3,6 +3,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserserviceService } from 'src/app/Service/UserService/userservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-reset',
@@ -10,9 +11,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./reset.component.scss'],
 })
 export class ResetComponent implements OnInit {
-  email = '';
+  token = '';
   hide = false;
+  email = '';
   ResetForm!: FormGroup;
+  disState = true;
   constructor(
     private route: ActivatedRoute,
     private userService: UserserviceService,
@@ -21,9 +24,11 @@ export class ResetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.email += params.get('email');
+    this.route.paramMap.subscribe((params) => {
+      this.token += params.get('token');
+      
     });
+    this.check(this.token);
     this.ResetForm = new FormGroup({
       password: new FormControl('', [
         Validators.required,
@@ -45,5 +50,21 @@ export class ResetComponent implements OnInit {
           }
         });
     }
+  }
+  check(data : any){
+    this.userService.check(data).subscribe((result:any)=>{
+       if(result.message == "Token Valid"){
+            
+         this.email = result.data.emailId
+         console.log(result.data);
+       }
+    },
+    (error: HttpErrorResponse) => {
+      if (error.error.message == 'Token Expired') {
+        this.disState = false;
+        this.snackBar.open("Token Expired! Please send another request!",'');
+      }
+    }
+  );
   }
 }

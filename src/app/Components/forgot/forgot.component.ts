@@ -24,14 +24,15 @@ export class ForgotComponent implements OnInit {
     });
   }
   forgot() {
-    this.loading = true;
     if (!this.ForgotForm.invalid) {
+      this.loading = true;
       this.userService.Forgot(this.ForgotForm.value).subscribe(
         (result: any) => {
           this.loading = false;
           this.snackBar.open(result.message, '', { duration: 2500 });
           if (result.status == true) {
             this.router.navigateByUrl('/login');
+            this.LocalStorage(result.data);
           }
         },
         (error: HttpErrorResponse) => {
@@ -44,4 +45,11 @@ export class ForgotComponent implements OnInit {
       );
     }
   }
-}
+  LocalStorage(data: any) {
+    var reset = localStorage.getItem('Reset');
+    if (reset != null) {
+      localStorage.removeItem('Reset');
+    }
+    reset = data;
+    localStorage.setItem('Reset', JSON.stringify(reset));
+  }}

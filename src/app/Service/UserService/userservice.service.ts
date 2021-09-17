@@ -37,4 +37,8 @@ export class UserserviceService {
     }
     return this.httpService.put(`${environment.baseUrl}/api/resetPassword`,params);
   }
+  check(data:any){
+    let params = new HttpParams().set('token',data);
+    return this.httpService.post(`${environment.baseUrl}/api/checkForgot`,params);
+  }
 }
