@@ -49,23 +49,16 @@ export class RegisterComponent implements OnInit {
         .Register(this.RegisterForm.value)
         .subscribe((result: any) => {
           console.log(result);
+          this.loading=false
+          this.snackBar.open(result.message, '', { duration: 2500 });
           if (result.status == true) {
-            this.loading=false
-            this.snackBar.open(result.message, '', { duration: 2500 });
             this.router.navigateByUrl('/login');
-          } else {
-            this.loading=false;
-            this.snackBar.open(result.message, '', { duration: 2500 });
           }
         },(error: HttpErrorResponse) => {
-          if(error.error.message == "Email Already Exists! Please Login"){
-            this.loading = false
+          this.loading = false
           this.snackBar.open(error.error.message,'',{duration:2500});
+          if(error.error.message == "Email Already Exists! Please Login"){
           this.router.navigateByUrl('/login');
-          }
-          else{
-            this.loading = false;
-            this.snackBar.open(error.error.message,'',{duration:2500});
           }
         });
     }

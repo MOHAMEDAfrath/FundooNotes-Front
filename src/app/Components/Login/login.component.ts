@@ -31,17 +31,11 @@ export class LoginComponent implements OnInit {
       .subscribe((result : any)=>{
           if(result.status == true){
             this.loading = false;
-            this.snackBar.open(result.message,'',{duration:2500});
+        this.snackBar.open(result.message,'',{duration:2500});
           }
       },(error: HttpErrorResponse) => {
-        if(error.error.message == "Login Failed ,Invalid Credentials !"){
-          this.loading = false;
+        this.loading = false;
         this.snackBar.open(error.error.message,'',{duration:2500});
-        }
-        else{
-          this.loading = false;
-          this.snackBar.open(error.error.message,'',{duration:2500});
-        }
       });
     }
   }

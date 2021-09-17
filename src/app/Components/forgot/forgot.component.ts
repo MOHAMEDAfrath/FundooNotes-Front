@@ -3,6 +3,7 @@ import { FormControl, Validators, FormGroup} from '@angular/forms';
 import { UserserviceService } from 'src/app/Service/UserService/userservice.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
@@ -13,7 +14,8 @@ export class ForgotComponent implements OnInit {
     loading = false;
   constructor(
     private userService : UserserviceService,
-    private snackBar : MatSnackBar
+    private snackBar : MatSnackBar,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -27,16 +29,16 @@ export class ForgotComponent implements OnInit {
     if(!this.ForgotForm.invalid){
       this.userService.Forgot(this.ForgotForm.value)
       .subscribe((result:any)=>{
+        this.loading = false;
+        this.snackBar.open(result.message,'',{duration:2500});
         if(result.status == true){
-          this.snackBar.open(result.message,'',{duration:2500});
-          this.loading = false;
+          this.router.navigateByUrl('/login');
         }
       },(error: HttpErrorResponse) => {
-        if(error.error.message == "Email not Exists ! Please Register ! "){
+        this.loading = false;
         this.snackBar.open(error.error.message,'',{duration:2500});
-        }
-        else{
-          this.snackBar.open(error.error.message,'',{duration:2500});
+        if(error.error.message == "Email not Exists ! Please Register ! "){
+              this.router.navigateByUrl('/register');
         }
       });
     }

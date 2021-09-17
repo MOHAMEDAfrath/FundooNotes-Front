@@ -33,8 +33,8 @@ export class ResetComponent implements OnInit {
     if(!this.ResetForm.invalid){
         this.userService.Reset(this.email,this.ResetForm.value)
         .subscribe((result : any)=>{
+          this.snackBar.open(result.message,'',{duration:2500});
           if(result.status == true){
-            this.snackBar.open(result.message,'',{duration:2500});
             this.router.navigateByUrl('/login');
           }
         })
