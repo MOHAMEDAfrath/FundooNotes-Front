@@ -1,5 +1,5 @@
 <mat-card class="Main-container">
-  <mat-progress-bar mode = "indeterminate" *ngIf="loading"></mat-progress-bar>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   <div class="Form-container">
     <form [formGroup]="LoginForm">
       <div>
@@ -17,25 +17,42 @@
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email"/>
-          <mat-error *ngIf="LoginForm.get('email')?.errors?.required">Email is required</mat-error>
-              <mat-error *ngIf="LoginForm.get('email')?.errors?.email">Invalid Email </mat-error>
+          <input matInput type="email" formControlName="email" />
+          <mat-error *ngIf="LoginForm.get('email')?.errors?.required"
+            >Email is required</mat-error
+          >
+          <mat-error *ngIf="LoginForm.get('email')?.errors?.email"
+            >Invalid Email
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password"  [type]='!hide?"text":"password"'/>
-          <mat-error *ngIf="LoginForm.get('password')?.errors?.required">Password is required</mat-error>
-              <mat-error *ngIf="LoginForm.get('password')?.errors?.pattern">Invalid Password </mat-error>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            [type]="!hide ? 'text' : 'password'"
+          />
+          <mat-error *ngIf="LoginForm.get('password')?.errors?.required"
+            >Password is required</mat-error
+          >
+          <mat-error *ngIf="LoginForm.get('password')?.errors?.pattern"
+            >Invalid Password
+          </mat-error>
         </mat-form-field>
-        </div>
-        <div class="inp-col">
-        <a  class="Forgot" routerLink="/forgot">Forgot Password?</a>
-        <mat-checkbox class="" (change)= 'hide=!hide'>Show Password</mat-checkbox>
-        </div>
+      </div>
+      <div class="inp-col">
+        <a class="Forgot" routerLink="/forgot">Forgot Password?</a>
+        <mat-checkbox class="" (change)="hide = !hide"
+          >Show Password</mat-checkbox
+        >
+      </div>
       <div class="but-div">
-        <button mat-flat-button class="next" (click) = "Login() ">Login</button>
-        <a routerLink="/register"><button mat-button class="Signin">Create account</button></a>
+        <button mat-flat-button class="next" (click)="Login()">Login</button>
+        <a routerLink="/register"
+          ><button mat-button class="Signin">Create account</button></a
+        >
       </div>
     </form>
-    </div>
+  </div>
 </mat-card>

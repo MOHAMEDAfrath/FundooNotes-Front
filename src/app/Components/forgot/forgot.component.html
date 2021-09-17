@@ -1,6 +1,6 @@
 <mat-card class="Main-container">
-  <mat-progress-bar mode = "indeterminate" *ngIf="loading"></mat-progress-bar>
-  <div class = "Form-container">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div class="Form-container">
     <form [formGroup]="ForgotForm">
       <div>
         <header>
@@ -17,15 +17,21 @@
       <div class="inp-div">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email"/>
-          <mat-error *ngIf="ForgotForm.get('email')?.errors?.required">Email is required</mat-error>
-              <mat-error *ngIf="ForgotForm.get('email')?.errors?.email">Invalid Email </mat-error>
+          <input matInput type="email" formControlName="email" />
+          <mat-error *ngIf="ForgotForm.get('email')?.errors?.required"
+            >Email is required</mat-error
+          >
+          <mat-error *ngIf="ForgotForm.get('email')?.errors?.email"
+            >Invalid Email
+          </mat-error>
         </mat-form-field>
-        </div>
+      </div>
       <div class="but-div">
-        <button mat-flat-button class="next" (click)= "forgot()" >Next</button>
-        <button mat-button class="cancel"[routerLink] = "['/login']">Cancel</button>
+        <button mat-flat-button class="next" (click)="forgot()">Next</button>
+        <button mat-button class="cancel" [routerLink]="['/login']">
+          Cancel
+        </button>
       </div>
     </form>
-    </div>
+  </div>
 </mat-card>
