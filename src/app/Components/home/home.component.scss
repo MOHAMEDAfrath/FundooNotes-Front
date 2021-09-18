@@ -8,7 +8,8 @@
     justify-content: space-between;
     background-color: white;
     border-bottom: .5px solid #a8aaad79;
-    
+    width: 100% !important;
+    overflow: hidden;
 }
 .logo-div{
     display: flex;
@@ -164,5 +165,47 @@ mat-divider{
     }
     .NoteContent.expand{
         width:calc(100% - 80px);
+    }
+}
+.ic-search{
+    display: none;
+}
+@media only screen and (max-width:1186px) {
+    .icons{
+        width: 10%;
+    }
+    
+}
+@media only screen and (max-width:614px) {
+    .SideNav.expand, .SideNav{
+        width: 80px !important;
+        .options{
+         p{
+            display: none !important;
+        }
+    }
+    }
+    .NoteContent.expand, .NoteContent{
+        width:calc(100% - 80px) !important;
+    }
+    .icons{
+        width: 10%;
+        margin-right: 65px;
+    }
+    input{
+        display: none;
+    }
+    .toolBar{
+        padding: 0px;
+    }
+    mat-form-field{
+        display: none;
+        
+    }
+    .search{
+        width: 0%;
+    }
+    .ic-search{
+        display: block;
     }
 }
