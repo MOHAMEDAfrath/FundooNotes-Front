@@ -1,3 +1,4 @@
+<div class="big-div">
 <mat-toolbar class="toolBar">
   <div class="logo-div">
     <button
@@ -43,7 +44,35 @@
       <p class="name">{{Name}}</p><p class="email">{{Email}}</p>
       </div>
       <mat-divider></mat-divider>
-      <button class="logout">Logout from you account</button>
+      <button class="logout" (click)="Logout()">Logout from you account</button>
     </mat-menu>
   </div>
 </mat-toolbar>
+<div class="Main-Div">
+    <div class="SideNav">
+        <div class="options" (click)="isOption=1" [class] = 'isOption == 1?"active":""'>
+            <i class="material-icons">lightbulb_outline</i>
+            <p class="iconName">Notes</p>
+        </div>
+        <div class="options" (click)="isOption=2" [class] = 'isOption == 2?"active":""'>
+            <i class="material-icons">notifications_none</i>
+            <p class="iconName">Reminder</p>
+        </div>
+        <div class="options" (click)="isOption=3" [class] = 'isOption == 3?"active":""'>
+            <i class="material-icons">edit</i>
+            <p class="iconName">Edit Label</p>
+        </div>
+        <div class="options" (click)="isOption=4"  [class] = 'isOption == 4?"active":""'>
+            <i class="material-icons">archive</i>
+            <p class="iconName">Archive</p>
+        </div>
+        <div class="options" (click)="isOption=5" [class] = 'isOption == 5?"active":""'>
+            <i class="material-icons">delete_outline</i>
+            <p class="iconName">Delete</p>
+        </div>
+    </div>
+    <div class="NoteContent">
+        <p>Main Container</p>
+    </div>
+</div>
+</div>

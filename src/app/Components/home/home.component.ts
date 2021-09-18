@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,8 @@ export class HomeComponent implements OnInit {
   Email = '';
   isGrid = true;
   isSearch = false;
-  constructor() { }
+  isOption = 1;
+  constructor(private route : Router) { }
 
   ngOnInit(): void {
     this.getFromLocalStorage()
@@ -19,5 +21,12 @@ export class HomeComponent implements OnInit {
       var user = JSON.parse(localStorage.getItem("FundooUser")!);
       this.Name = user.userName;
       this.Email = user.emailId;
+  }
+  Logout(){
+    var user = JSON.parse(localStorage.getItem("FundooUser")!);
+      if(user != null){
+          localStorage.removeItem("FundooUser");
+          this.route.navigateByUrl('/login');
+      }
   }
 }
