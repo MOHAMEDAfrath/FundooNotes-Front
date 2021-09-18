@@ -24,8 +24,8 @@
   <div class="search">
     <mat-form-field appearance="outline">
       <mat-icon matPrefix>search</mat-icon>
-      <input matInput placeholder="Search"/>
-      <i class="material-icons icon" matSuffix>clear</i>
+      <input matInput placeholder="Search" (change)="searchInp = changeSearch($event)" [value] = "searchInp"/>
+      <i class="material-icons icon" matSuffix *ngIf="searchInp.length>0" (click) = 'searchInp = ""'>clear</i>
     </mat-form-field>
   </div>
   <div class="icons">

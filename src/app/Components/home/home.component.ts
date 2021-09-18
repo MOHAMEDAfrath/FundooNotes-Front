@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   isGrid = true;
   isSearch = false;
   isOption = 1;
+  searchInp = "";
   constructor(private route : Router) { }
 
   ngOnInit(): void {
@@ -28,5 +29,9 @@ export class HomeComponent implements OnInit {
           localStorage.removeItem("FundooUser");
           this.route.navigateByUrl('/login');
       }
+  }
+  changeSearch(event:any){
+      console.log(event.target.value)
+      return event.target.value;
   }
 }

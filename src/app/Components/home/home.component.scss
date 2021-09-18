@@ -103,11 +103,11 @@ mat-divider{
 .icon{
     cursor: pointer;
     color: gray;
+    padding: 5px 5px;
     &:hover{
         color: black;
         border: .5px solid #a8aaad79;
         border-radius: 50%;
-        padding: 5px 5px;
         background-color: #a8aaad79;
     }
 }
