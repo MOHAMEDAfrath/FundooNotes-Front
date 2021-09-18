@@ -139,6 +139,7 @@ mat-divider{
                 margin-bottom: 0px !important;
                 margin-left: 10px;
                 font-size: 17px;
+               
             }
             &:hover{
                 background-color: #ddd;
@@ -151,5 +152,17 @@ mat-divider{
     }
     .NoteContent{
         width: calc(100% - 250px);
+        background-color: yellow;
+    }
+    .SideNav.expand{
+        width: 80px !important;
+        .options{
+         p{
+            display: none !important;
+        }
+    }
+    }
+    .NoteContent.expand{
+        width:calc(100% - 80px);
     }
 }

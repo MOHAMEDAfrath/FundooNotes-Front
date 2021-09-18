@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   isSearch = false;
   isOption = 1;
   searchInp = "";
+  expand =true;
   constructor(private route : Router) { }
 
   ngOnInit(): void {
