@@ -20,6 +20,7 @@ import { ResetComponent } from './Components/reset/reset.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HomeComponent } from './Components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     RegisterComponent,
     LoginComponent,
     ForgotComponent,
-    ResetComponent
+    ResetComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
