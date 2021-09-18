@@ -1,6 +1,6 @@
 <div class="big-div">
 <mat-toolbar class="toolBar">
-  <div class="logo-div">
+  <div class="logo-div" [class]='!clickSearch?"media-logo":""'>
     <button
       mat-icon-button
       class="example-icon"
@@ -22,15 +22,16 @@
     />
     <span>&nbsp;Fundoo</span>
   </div>
-  <div class="search">
-    <mat-form-field appearance="outline">
-      <mat-icon matPrefix>search</mat-icon>
+  <div class="search" [class] = '!clickSearch?"media-search-div":""'>
+    <mat-form-field appearance="outline" [class] = '!clickSearch?"media-search":""'>
+      <mat-icon matPrefix *ngIf="clickSearch">search</mat-icon>
+      <mat-icon class="material-icons class" matPrefix (click) = "clickSearch=!clickSearch;searchIcon=!searchIcon" *ngIf = "!clickSearch">arrow_back</mat-icon>
       <input matInput placeholder="Search" (change)="searchInp = changeSearch($event)" [value] = "searchInp"/>
       <i class="material-icons icon" matSuffix *ngIf="searchInp.length>0" (click) = 'searchInp = ""'>clear</i>
     </mat-form-field>
   </div>
   <div class="icons">
-    <mat-icon matPrefix class="ic-search">search</mat-icon>
+    <mat-icon matPrefix class="ic-search" (click) = "clickSearch=!clickSearch;searchIcon=!searchIcon" *ngIf="searchIcon == true">search</mat-icon>
     <i class="material-icons icon" *ngIf="!isGrid" (click)="isGrid=true">view_list</i>
     <i class="material-icons icon" *ngIf="isGrid" (click)="isGrid=false">grid_view</i>
     <button

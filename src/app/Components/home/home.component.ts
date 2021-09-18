@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   isOption = 1;
   searchInp = "";
   expand =true;
+  clickSearch = true;
+  searchIcon = true;
   constructor(private route : Router) { }
 
   ngOnInit(): void {
