@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.checkLocalStorage()
     this.LoginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -57,5 +58,11 @@ export class LoginComponent implements OnInit {
     }
     user = data;
     localStorage.setItem('FundooUser', JSON.stringify(user));
+  }
+  checkLocalStorage(){
+    var user = localStorage.getItem('FundooUser');
+    if(user != null){
+      this.route.navigateByUrl('/home');
+    }
   }
 }

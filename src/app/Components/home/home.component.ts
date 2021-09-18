@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(private route : Router) { }
 
   ngOnInit(): void {
+    this.checkLocalStorage()
     this.getFromLocalStorage()
   }
   getFromLocalStorage(){
@@ -34,5 +35,11 @@ export class HomeComponent implements OnInit {
   changeSearch(event:any){
       console.log(event.target.value)
       return event.target.value;
+  }
+  checkLocalStorage(){
+    var user = localStorage.getItem('FundooUser');
+    if(user == null){
+      this.route.navigateByUrl('/login');
+    }
   }
 }
