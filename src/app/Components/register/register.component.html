@@ -46,7 +46,6 @@
         <mat-form-field appearance="outline" class="email">
           <mat-label>Username</mat-label>
           <input matInput formControlName="email" />
-          <mat-icon matSuffix>@gmail.com</mat-icon>
           <mat-error *ngIf="RegisterForm.get('email')?.errors?.required"
             >Email is required</mat-error
           >

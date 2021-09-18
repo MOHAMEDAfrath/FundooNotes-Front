@@ -9,6 +9,7 @@ $CommonColor: #1a73e8;
   min-width: 650px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 5%;
 }
 span {
   font-size: 25px;
@@ -120,11 +121,7 @@ p {
 mat-hint {
   font-size: 14px;
 }
-mat-icon {
-  font-size: 18px;
-  font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
-  margin-top: -10px;
-}
+
 ::ng-deep .mat-form-field-suffix {
   position: unset !important;
 }

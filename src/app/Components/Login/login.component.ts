@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
           this.snackBar.open(result.message, '', { duration: 2500 });
           if (result.status == true) {
             this.LocalStorage(result.data);
+            this.route.navigateByUrl('/home');
           }
         },
         (error: HttpErrorResponse) => {

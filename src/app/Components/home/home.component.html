@@ -1,1 +1,32 @@
-<p>home works!</p>
+
+        <mat-toolbar class="toolBar">
+            <div class = "logo-div">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <img class="gb_tc gb_6d" 
+            src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
+            srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x
+             " alt="" aria-hidden="true" style="width:40px;height:40px">
+            <span>&nbsp;Fundoo</span>
+            </div>
+            <div class="search">
+                <mat-form-field appearance="outline">
+                    <mat-icon matPrefix>search</mat-icon>  
+                    <input matInput placeholder="Search">
+                </mat-form-field>
+            </div>
+            <div class="icons">
+                <i class="material-icons">view_list</i>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <i class="material-icons person">person</i>
+            </button>
+                <mat-menu #menu="matMenu">
+                    <i class="material-icons person menuIcon">person</i>
+                    <p>Name</p>
+                    <p>Email</p>
+                    <button class = "logout">Logout</button>
+                  </mat-menu>
+            </div>
+        </mat-toolbar>
+ 
