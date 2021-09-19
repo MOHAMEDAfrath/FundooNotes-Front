@@ -69,14 +69,14 @@ input{
     align-self: center;
 }
 ::ng-deep .mat-menu-panel{
-   padding: 25px 45px;
+   padding: 25px 45px !important;
     
 }
 ::ng-deep .mat-menu-content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 p{
     text-align: center;

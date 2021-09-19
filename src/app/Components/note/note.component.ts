@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserserviceService } from 'src/app/Service/UserService/userservice.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: '[Create-Note]',
@@ -10,10 +12,26 @@ export class NoteComponent implements OnInit {
   dispNote = false;
   DescNote :string= ''
   TitleNote:string='';
-  constructor() {
+  NotesForm!:FormGroup;
+  constructor(private userservice: UserserviceService
+    ,private snackBar :MatSnackBar) {
   }
   ngOnInit(): void {
+    this.NotesForm= new FormGroup({
+      title: new FormControl(''),
+      Desc: new FormControl('')
+    });
 
+  }
+  createNote(){
+    if(this.NotesForm.value.title != '' || this.NotesForm.value.Desc!= ''){
+      this.userservice.CreateNote(this.NotesForm.value).
+      subscribe((result:any)=>{
+        if(result.status == true){
+            this.snackBar.open(result.message,'',{duration:3000});
+        }
+      })
+    }
   }
   autogrow(){
     var textArea = document.getElementById("notes")!      

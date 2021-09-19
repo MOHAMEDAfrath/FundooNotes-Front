@@ -7,7 +7,6 @@ import { HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserserviceService {
-
   constructor(private httpService : HttpserviceService) { }
 
   Register(data:any){
@@ -40,5 +39,14 @@ export class UserserviceService {
   check(data:any){
     let params = new HttpParams().set('token',data);
     return this.httpService.post(`${environment.baseUrl}/api/checkForgot`,params);
+  }
+  CreateNote(data:any){
+    var user = JSON.parse(localStorage.getItem('FundooUser')!);
+    let params = {
+      Title: data.title,
+      Notes: data.Desc,
+      UserId:user.userId
+    }
+    return this.httpService.post(`${environment.baseUrl}/api/addNote`,params);
   }
 }

@@ -7,14 +7,14 @@
           </div>
       </mat-card>
   <mat-card class="n-mat" *ngIf="dispNote">
-    <form class="example-form">
+    <form class="example-form" [formGroup]="NotesForm">
       <div class="t-div t-main">
-        <input type="text" class="title" placeholder="Title" (change)="TitleNote=checkMenu($event)" [value] = "TitleNote"/>
+        <input type="text" class="title" id= "temp" formControlName = 'title' placeholder="Title" (change)="TitleNote=checkMenu($event)" [ngModel] = 'TitleNote' #reference/>
         <i class="material-icons i-pin">push_pin</i>
       </div>
       <div class="n-div">
-          <textarea id = "notes" class="notes" placeholder="Take a note..." (change)="DescNote=checkMenu($event)" 
-          [value] = "DescNote" (keyup)="autogrow()"></textarea>
+          <textarea id = "notes" class="notes"  formControlName = 'Desc' placeholder="Take a note..." (change)="DescNote=checkMenu($event)" 
+          [ngModel] = "DescNote" (keyup)="autogrow()"></textarea>
       </div>
         </form>
   </mat-card>
@@ -35,7 +35,7 @@
         <button [disabled] = "true" class="i-but"><i class="material-icons">undo</i></button>
         <button [disabled] = "true" class = "i-but"><i class="material-icons">redo</i></button>
     </div>
-        <button mat-button (click) = "dispNote=!dispNote;DescNote='';TitleNote=''">Cancel</button>
+        <button mat-button  (click) = 'createNote();TitleNote="";DescNote="";dispNote=!dispNote'>Cancel</button>
     </div>
 </div> 
 </div>

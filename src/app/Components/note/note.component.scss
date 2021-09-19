@@ -23,7 +23,12 @@
     
 }
 .t-icons{
-    padding-right: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    &:hover{
+        background-color: #ddd;
+        border-radius: 50%;
+    }
 }
 .n-div{
     width:100%;
@@ -72,9 +77,10 @@
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px ;
 }
-::ng-deep .mat-menu-panel {
-     padding: 0px !important; 
+::ng-deep .ng-tns-c110-2 {
+     padding: 5px !important; 
 }
+
 .i-but{
     background: none;
     border: none;
@@ -100,6 +106,9 @@
 
   .mat-card::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+  .i-pin{
+      cursor: pointer;
   }
 @media only screen and (max-width:650px){
     .i-div{
