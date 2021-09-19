@@ -1,0 +1,120 @@
+.mat-card{
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px 1px rgba(0, 0, 0, 0.19);
+    max-height: 500px;
+    overflow-y: auto;
+    position: relative;
+
+}
+.title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: 1px;
+    border: none;
+    width: 40vw;
+    &:focus-visible{
+        outline: none !important;
+    }
+}
+.t-div{
+    display: flex;
+    //justify-content: center;
+    margin-bottom: 10px;
+    
+}
+.t-icons{
+    padding-right: 10px;
+}
+.n-div{
+    width:100%;
+}
+
+.notes{
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    flex: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+    resize: none;
+    border: none;
+    width: 100%;
+    &:focus-visible{
+        outline: none !important;
+    }
+
+}
+.t-main{
+    justify-content: space-between;
+}
+.i-main{
+    display: flex;
+    justify-content: space-between;
+    border: .5px solid #ddd;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px 1px rgba(0, 0, 0, 0.19);
+    padding: 8px ;
+.i-div{
+    display: flex;
+    justify-content: space-between;
+    i{
+        padding: 5px 12px;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.75);
+        &:hover{
+            background-color: #eee;
+            border-radius:50% ;
+        }
+    }
+}
+}
+.n-mat{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px ;
+}
+::ng-deep .mat-menu-panel {
+     padding: 0px !important; 
+}
+.i-but{
+    background: none;
+    border: none;
+    i{
+        color: rgba(0, 0, 0, 0.5) !important;
+    }
+}
+
+.mat-card::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+ 
+ .mat-card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+
+  .mat-card::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+
+  .mat-card::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+@media only screen and (max-width:650px){
+    .i-div{
+        i{
+            padding: 5px !important;
+        }
+    }
+
+}
+@media only screen and (max-width:500px){
+    .i-main{
+        max-width: 350px;
+        flex-wrap: wrap;
+    }
+    .i-main>button{
+        align-self: flex-end;
+    }
+}

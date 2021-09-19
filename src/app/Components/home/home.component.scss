@@ -156,6 +156,8 @@ mat-divider{
     }
     .NoteContent{
         width: calc(100% - 250px);
+        display: flex;
+        flex-direction: column;
     }
     .SideNav.expand{
         width: 80px !important;
@@ -169,6 +171,12 @@ mat-divider{
         width:calc(100% - 80px);
     }
 }
+.c-note{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}  
 .ic-search{
     display: none;
 }
@@ -179,7 +187,7 @@ mat-divider{
     }
     
 }
-@media only screen and (max-width:614px) {
+@media only screen and (max-width:760px) {
     .SideNav.expand, .SideNav{
         width: 80px !important;
         .options{
@@ -198,7 +206,7 @@ mat-divider{
     .toolBar{
         padding: 0px;
     }
-    mat-form-field{
+    .s-input{
         display: none;
        
     }

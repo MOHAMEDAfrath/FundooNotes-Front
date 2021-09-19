@@ -27,7 +27,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import { NoteComponent } from './Components/note/note.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +55,7 @@ import { NoteComponent } from './Components/note/note.component';
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

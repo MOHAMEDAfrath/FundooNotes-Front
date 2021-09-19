@@ -23,7 +23,7 @@
     <span>&nbsp;Fundoo</span>
   </div>
   <div class="search" [class] = '!clickSearch?"media-search-div":""'>
-    <mat-form-field appearance="outline" [class] = '!clickSearch?"media-search":""'>
+    <mat-form-field class="s-input" appearance="outline" [class] = '!clickSearch?"media-search":""'>
       <mat-icon matPrefix *ngIf="clickSearch">search</mat-icon>
       <mat-icon class="material-icons class" matPrefix (click) = "clickSearch=!clickSearch;searchIcon=!searchIcon" *ngIf = "!clickSearch">arrow_back</mat-icon>
       <input matInput placeholder="Search" (change)="searchInp = changeSearch($event)" [value] = "searchInp"/>
@@ -75,7 +75,7 @@
         </div>
     </div>
     <div class="NoteContent" [class] = '!expand?"expand":""'>
-        <p>Main Container</p>
+        <div Create-Note class="c-note" *ngIf='isOption != 4 && isOption != 5'></div>
     </div>
 </div>
 </div>
