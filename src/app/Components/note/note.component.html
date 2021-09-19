@@ -1,26 +1,42 @@
 <div>
-    <mat-card (click) = "dispNote=!dispNote" *ngIf="!dispNote">
-          <div class="t-div">
-            <input type="text" class="title" placeholder="Take a note..." />
-            <i class="material-icons t-icons">check</i>
-            <i class="material-icons t-icons">image</i>
-          </div>
-      </mat-card>
+  <mat-card (click)="dispNote = !dispNote" *ngIf="!dispNote">
+    <div class="t-div">
+      <input type="text" class="title" placeholder="Take a note..." />
+      <i class="material-icons t-icons">check</i>
+      <i class="material-icons t-icons">image</i>
+    </div>
+  </mat-card>
   <mat-card class="n-mat" *ngIf="dispNote">
     <form class="example-form" [formGroup]="NotesForm">
       <div class="t-div t-main">
-        <input type="text" class="title" id= "temp" formControlName = 'title' placeholder="Title" (change)="TitleNote=checkMenu($event)" [ngModel] = 'TitleNote' #reference/>
+        <input
+          type="text"
+          class="title"
+          id="temp"
+          formControlName="title"
+          placeholder="Title"
+          (change)="TitleNote = checkMenu($event)"
+          [ngModel]="TitleNote"
+          #reference
+        />
         <i class="material-icons i-pin">push_pin</i>
       </div>
       <div class="n-div">
-          <textarea id = "notes" class="notes"  formControlName = 'Desc' placeholder="Take a note..." (change)="DescNote=checkMenu($event)" 
-          [ngModel] = "DescNote" (keyup)="autogrow()"></textarea>
+        <textarea
+          id="notes"
+          class="notes"
+          formControlName="Desc"
+          placeholder="Take a note..."
+          (change)="DescNote = checkMenu($event)"
+          [ngModel]="DescNote"
+          (keyup)="autogrow()"
+        ></textarea>
       </div>
-        </form>
+    </form>
   </mat-card>
   <div>
     <div class="i-main" *ngIf="dispNote">
-    <div class="i-div">
+      <div class="i-div">
         <i class="material-icons">notifications_none</i>
         <i class="material-icons">person_add_alt_1</i>
         <i class="material-icons">color_lens</i>
@@ -28,14 +44,35 @@
         <i class="material-icons">archive</i>
         <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
         <mat-menu #menu="matMenu" class="i-option">
-            <button mat-menu-item *ngIf="TitleNote.length>0 || DescNote.length>0">Delete Label</button>
-            <button mat-menu-item>Add Label</button>
-            <button mat-menu-item *ngIf="TitleNote.length>0 || DescNote.length>0">Make a copy</button>
-          </mat-menu>
-        <button [disabled] = "true" class="i-but"><i class="material-icons">undo</i></button>
-        <button [disabled] = "true" class = "i-but"><i class="material-icons">redo</i></button>
+          <button
+            mat-menu-item
+            *ngIf="TitleNote.length > 0 || DescNote.length > 0"
+          >
+            Delete Label
+          </button>
+          <button mat-menu-item>Add Label</button>
+          <button
+            mat-menu-item
+            *ngIf="TitleNote.length > 0 || DescNote.length > 0"
+          >
+            Make a copy
+          </button>
+        </mat-menu>
+        <button [disabled]="true" class="i-but">
+          <i class="material-icons">undo</i>
+        </button>
+        <button [disabled]="true" class="i-but">
+          <i class="material-icons">redo</i>
+        </button>
+      </div>
+      <button
+        mat-button
+        (click)="
+          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote
+        "
+      >
+        Cancel
+      </button>
     </div>
-        <button mat-button  (click) = 'createNote();TitleNote="";DescNote="";dispNote=!dispNote'>Cancel</button>
-    </div>
-</div> 
+  </div>
 </div>

@@ -5,7 +5,7 @@
       mat-icon-button
       class="example-icon"
       aria-label="Example icon-button with menu icon"
-      (click) = "expand=!expand"
+      (click) = "expand=!expand;toggle=!toggle"
     >
       <mat-icon class="icon">menu</mat-icon>
     </button>
@@ -52,7 +52,7 @@
   </div>
 </mat-toolbar>
 <div class="Main-Div">
-    <div class="SideNav" [class] = '!expand?"expand":""'>
+    <div class="SideNav" (mouseenter)="toggle?expand=true:''" (mouseleave) = "toggle?expand=false:''" [class] = '!expand?"expand":""'>
         <div class="options" (click)="isOption=1" [class] = 'isOption == 1?"active":""'>
             <i class="material-icons">lightbulb_outline</i>
             <p class="iconName">Notes</p>

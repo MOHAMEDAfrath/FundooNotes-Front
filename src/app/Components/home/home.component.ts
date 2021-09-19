@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   isOption = 1;
   searchInp = "";
   expand =true;
+  toggle = false;
   clickSearch = true;
   searchIcon = true;
   constructor(private route : Router) { }
