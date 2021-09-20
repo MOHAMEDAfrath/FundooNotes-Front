@@ -17,4 +17,7 @@ export class DialogComponent implements OnInit {
   changeText(event:any){
       return event.target.value;
   }
-}
+//   removeColab(colab:any){
+//     console.log(colab);
+//   }
+ }

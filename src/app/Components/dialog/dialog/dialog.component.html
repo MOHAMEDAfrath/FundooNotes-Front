@@ -19,7 +19,7 @@
     <p class="o-email">{{colab}}</p>
     </div>
     </div>
-    <i class="material-icons icon clear">clear</i>
+    <i class="material-icons icon clear" (click)="data.collab.splice(data.collab.indexOf(colab),1)">clear</i>
 </div>
 <div class="owner addperson">
     <div>
