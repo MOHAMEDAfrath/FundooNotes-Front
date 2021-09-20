@@ -1,0 +1,66 @@
+::ng-deep .mat-dialog-container{
+    overflow: hidden !important;
+    border-radius: 15px;
+    width: 40vw;
+}
+h2{
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+mat-divider{
+    width: 95%;
+    margin-left: 10px;
+    margin-top: -10px;
+}
+.owner{
+    padding: 10px;
+    padding-left: 14px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.o-name{
+    display: flex;
+    margin-bottom: 0px;
+    padding-left: 5px;
+}
+.o-email{
+    margin-top: -20px;
+    padding-left: 5px ;
+}
+.name-div{
+    display: flex;
+    align-items: center;
+}
+.ownerIcon{
+    padding: 10px;
+    margin-right: 5px;
+    border: 1px solid #a8aaad79;
+    border-radius: 50%;
+}
+.add-email{
+    border: none;
+    &:focus-visible{
+        outline: none;
+    }
+    width: 100%;
+}
+.addperson{
+    align-items: center ;
+    margin-bottom: 20px;
+    div{
+    display: flex;
+    width: 94.1%;
+    }
+}
+.d-but{
+    display: flex;
+    padding: 10px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    background-color: #a8aaad79;
+    div{
+        width: 70%;
+    }
+}

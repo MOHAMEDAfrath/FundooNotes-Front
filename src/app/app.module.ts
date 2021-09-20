@@ -26,6 +26,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import { NoteComponent } from './Components/note/note.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './Components/dialog/dialog/dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { NoteComponent } from './Components/note/note.component';
     ForgotComponent,
     ResetComponent,
     HomeComponent,
-    NoteComponent
+    NoteComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -56,7 +60,9 @@ import { NoteComponent } from './Components/note/note.component';
     MatIconModule,
     MatMenuModule,
     MatDividerModule,
+    MatDialogModule
   ],
+  entryComponents:[DialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

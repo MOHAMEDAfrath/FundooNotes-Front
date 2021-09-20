@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
+import { DialogComponent } from '../dialog/dialog/dialog.component';
 
 @Component({
   selector: '[Create-Note]',
@@ -13,10 +15,14 @@ export class NoteComponent implements OnInit {
   DescNote: string = '';
   TitleNote: string = '';
   NotesForm!: FormGroup;
+  animal: string = '';
+  name: string = (JSON.parse(localStorage.getItem('FundooUser')!)).userName;
   constructor(
     private noteservice: NotesService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog : MatDialog
   ) {}
+  
   ngOnInit(): void {
     this.NotesForm = new FormGroup({
       title: new FormControl(''),
@@ -33,6 +39,9 @@ export class NoteComponent implements OnInit {
           }
         });
     }
+  }
+  openDialog(){
+     let dialogref = this.dialog.open(DialogComponent,{data:{name : this.name}});
   }
   autogrow() {
     var textArea = document.getElementById('notes')!;
