@@ -19,7 +19,9 @@ export class NoteComponent implements OnInit {
   name: string = (JSON.parse(localStorage.getItem('FundooUser')!)).userName;
   dayArr = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat'];
   monthArr = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec']
-  colourArr = ['white','#f28b82','#fbbc04','#fff475','#ccff90','#a7ffeb','#cbf0f8','#aecbfa','#d7aefb','#fdcfe8','#e6c9a8','#e8eaed']
+  //toolColor = ['white','Red','orange','yellow','green','teal','blue','darkblue','purple','pink','brown','grey']
+  colourArr = [{colour:'white',tooltip:'White'},{colour:'#f28b82',tooltip:'Red'},{colour:'#fbbc04',tooltip:'Orange'},{colour:'#fff475',tooltip:'Yellow'},{colour:'#ccff90',tooltip:'Green'},{colour:'#a7ffeb',tooltip:'Teal'},{colour:'#cbf0f8',tooltip:'Blue'},{colour:'#aecbfa',tooltip:'Dark Blue'},{colour:'#d7aefb',tooltip:'Purple'},{colour:'#fdcfe8',tooltip:'Pink'}
+  ,{colour:'#e6c9a8',tooltip:'Brown'},{colour:'#e8eaed',tooltip:'Gray'}]
   remainder :string='';
   addRemainder:string='';
   selectable = true;

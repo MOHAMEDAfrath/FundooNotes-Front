@@ -64,7 +64,7 @@
         <i class="material-icons"  matTooltip="Collaborator" (click)="openDialog()">person_add_alt_1</i>
         <i class="material-icons"  matTooltip="Change Color" [matMenuTriggerFor]="Color">color_lens</i>
         <mat-menu #Color="matMenu" class="r-option">
-          <div class="a-color" *ngFor = "let color of colourArr" (click)="setColor=color" [ngStyle]="{'background-color': color}">
+          <div class="a-color" *ngFor = "let color of colourArr" matTooltip= "{{color.tooltip}}" (click)="setColor=color.colour" [ngStyle]="{'background-color': color.colour}">
           </div>
         </mat-menu>
         <i class="material-icons"  matTooltip="Add image">image</i>
