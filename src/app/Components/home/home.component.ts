@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.checkLocalStorage()
     this.getFromLocalStorage()
   }
-  getFromLocalStorage(){
+  async getFromLocalStorage(){
       var user = JSON.parse(localStorage.getItem("FundooUser")!);
       this.Name = user.userName;
       this.Email = user.emailId;
