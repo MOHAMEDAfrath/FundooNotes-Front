@@ -17,17 +17,26 @@ export class NoteComponent implements OnInit {
   NotesForm!: FormGroup;
   animal: string = '';
   name: string = (JSON.parse(localStorage.getItem('FundooUser')!)).userName;
+  dayArr = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat'];
+  monthArr = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec']
+  colourArr = ['white','#f28b82','#fbbc04','#fff475','#ccff90','#a7ffeb','#cbf0f8','#aecbfa','#d7aefb','#fdcfe8','#e6c9a8','#e8eaed']
+  remainder :string='';
+  addRemainder:string='';
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  setColor = "white";
   constructor(
     private noteservice: NotesService,
     private snackBar: MatSnackBar,
     public dialog : MatDialog
   ) {}
-  
   ngOnInit(): void {
     this.NotesForm = new FormGroup({
       title: new FormControl(''),
       Desc: new FormControl(''),
     });
+    this.getDate();
   }
   createNote() {
     if (this.NotesForm.value.title != '' || this.NotesForm.value.Desc != '') {
@@ -51,5 +60,15 @@ export class NoteComponent implements OnInit {
   }
   checkMenu(event: any) {
     return event.target.value;
+  }
+  getDate(){
+    let date = new Date().getDay();
+    this.remainder = this.dayArr[date]+", 8:00AM";
+  }
+  setRemainder(){
+    let date = new Date();
+     date.setDate(date.getDate()+7);
+    this.addRemainder= this.monthArr[date.getMonth()]+" "+date.getDate()+", 8:00AM";
+    console.log(this.addRemainder)
   }
 }

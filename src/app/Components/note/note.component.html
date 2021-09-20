@@ -6,7 +6,7 @@
       <i class="material-icons t-icons">image</i>
     </div>
   </mat-card>
-  <mat-card class="n-mat" *ngIf="dispNote">
+  <mat-card class="n-mat" *ngIf="dispNote" [ngStyle]="{'background-color':setColor}">
     <form class="example-form" [formGroup]="NotesForm">
       <div class="t-div t-main">
         <input
@@ -17,9 +17,9 @@
           placeholder="Title"
           (change)="TitleNote = checkMenu($event)"
           [ngModel]="TitleNote"
-          #reference
+          [ngStyle]="{'background-color':setColor}"
         />
-        <i class="material-icons i-pin">push_pin</i>
+       <i matTooltip="Pin the note" class="material-icons i-pin" >push_pin</i>
       </div>
       <div class="n-div">
         <textarea
@@ -30,25 +30,46 @@
           (change)="DescNote = checkMenu($event)"
           [ngModel]="DescNote"
           (keyup)="autogrow()"
+          [ngStyle]="{'background-color':setColor}"
         ></textarea>
+      </div>
+      <div class="chip-div" *ngIf = "addRemainder.length>0">
+        <i class="material-icons">access_time</i>
+          <p class="chip">{{addRemainder}}</p>
+          <button class="chip-but"  matTooltip="Delete Remainder" (click)="addRemainder=''"><i class="material-icons">close</i></button>
       </div>
     </form>
   </mat-card>
   <div>
-    <div class="i-main" *ngIf="dispNote">
-      <div class="i-div">
-        <i class="material-icons" [matMenuTriggerFor]="Remainder">notifications_none</i>
+    <div class="i-main" *ngIf="dispNote"  [ngStyle]="{'background-color':setColor}">
+      <div class="i-div" >
+        <i class="material-icons"  matTooltip="Remind me" [matMenuTriggerFor]="Remainder"
+          >notifications_none</i
+        >
         <mat-menu #Remainder="matMenu" class="r-option">
           <p class="r-par">Remainder:</p>
-          <button mat-menu-item class="remainder-but"><p>Later today</p><p>8:00PM</p></button>
-          <button mat-menu-item class="remainder-but"><p>Tomorrow</p><p>8:00AM</p></button>
-          <button mat-menu-item class="remainder-but"><p>Next Week</p><p>Mon 8:00AM</p></button>
+          <button mat-menu-item class="remainder-but" (click)="addRemainder = 'Today, 8:00PM'">
+            <p>Later today</p>
+            <p>8:00PM</p>
+          </button>
+          <button mat-menu-item class="remainder-but" (click)="addRemainder = 'Tomorrow, 8:00AM'">
+            <p>Tomorrow</p>
+            <p>8:00AM</p>
+          </button>
+          <button mat-menu-item class="remainder-but" (click)="setRemainder()">
+            <p>Next Week</p>
+            <p>{{ remainder }}</p>
+          </button>
         </mat-menu>
-        <i class="material-icons" (click)="openDialog()">person_add_alt_1</i>
-        <i class="material-icons">color_lens</i>
-        <i class="material-icons">image</i>
-        <i class="material-icons">archive</i>
-        <i class="material-icons more" [matMenuTriggerFor]="menu">more_vert</i>
+        <i class="material-icons"  matTooltip="Collaborator" (click)="openDialog()">person_add_alt_1</i>
+        <i class="material-icons"  matTooltip="Change Color" [matMenuTriggerFor]="Color">color_lens</i>
+        <mat-menu #Color="matMenu" class="r-option">
+          <div class="a-color" *ngFor = "let color of colourArr" (click)="setColor=color" [ngStyle]="{'background-color': color}">
+          </div>
+        </mat-menu>
+        <i class="material-icons"  matTooltip="Add image">image</i>
+        <i class="material-icons"  matTooltip="Archive">archive</i>
+        <i class="material-icons more"  matTooltip="More" [matMenuTriggerFor]="menu">more_vert</i>
         <mat-menu #menu="matMenu" class="i-option">
           <button
             mat-menu-item

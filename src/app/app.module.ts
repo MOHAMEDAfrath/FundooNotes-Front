@@ -28,6 +28,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import { NoteComponent } from './Components/note/note.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './Components/dialog/dialog/dialog.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { DialogComponent } from './Components/dialog/dialog/dialog.component';
     MatIconModule,
     MatMenuModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule,
+    MatTooltipModule
   ],
   entryComponents:[DialogComponent],
   providers: [],

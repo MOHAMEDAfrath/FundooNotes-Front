@@ -69,10 +69,10 @@ input {
   font-size: 80px;
   align-self: center;
 }
-::ng-deep .mat-menu-panel {
+::ng-deep #mat-menu-panel-0 {
   padding: 25px 45px !important;
 }
-::ng-deep .mat-menu-content {
+::ng-deep #mat-menu-panel-0 .mat-menu-content {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;

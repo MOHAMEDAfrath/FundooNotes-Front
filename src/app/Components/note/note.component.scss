@@ -87,18 +87,16 @@
 ::ng-deep .ng-trigger {
     padding: 0px !important;
 }
-::ng-deep .mat-menu-panel{
-  width: 250px !important;
+::ng-deep #mat-menu-panel-1{
+  max-width: 300px;
+  width: 300px !important;
  .r-par{
-  text-align: center;
   align-self: flex-start;
   margin-left: 15px;
   padding-top: 5px;
   font-family: 'Roboto',sans-serif;
  }
 }
-
-
 .i-but {
   background: none;
   border: none;
@@ -131,6 +129,61 @@
   p{
     color: #3c4043;
   }
+}
+
+.a-color{
+  width: 32px;
+  height: 32px;
+  border-radius:50%;
+  margin: 5px;
+  border: 1px solid transparent;
+  &:hover{
+    border: 1px solid black;
+  }
+  &:nth-child(1){
+    border: 1px solid black;
+  }
+}
+.chip-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ddd;
+  width: max-content;
+  padding: 4px 10px;
+  border-radius: 15px;
+  p{
+    margin: 0px;
+    margin-left: 5px;
+  }
+  .chip-but{
+    border: none;
+    background: none;
+    padding: 0px 2px;
+    margin-top: 5px;
+    display: none;
+  }
+  i{
+    font-size: 17px;
+    color: rgba(0,0,0,0.65);
+  }
+  &:hover{
+    .chip-but{
+      display: block;
+    }
+  }
+  
+}
+::ng-deep .mat-tooltip {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}
+::ng-deep #mat-menu-panel-2 .mat-menu-content{
+  width: 180px;
+  padding: 8px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
 @media only screen and (max-width: 650px) {
   .i-div {
