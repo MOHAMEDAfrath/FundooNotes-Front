@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserserviceService } from 'src/app/Service/UserService/userservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotesService } from 'src/app/Service/notesService/notes.service';
 
 @Component({
   selector: '[Create-Note]',
@@ -14,7 +14,7 @@ export class NoteComponent implements OnInit {
   TitleNote: string = '';
   NotesForm!: FormGroup;
   constructor(
-    private userservice: UserserviceService,
+    private noteservice: NotesService,
     private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class NoteComponent implements OnInit {
   }
   createNote() {
     if (this.NotesForm.value.title != '' || this.NotesForm.value.Desc != '') {
-      this.userservice
+      this.noteservice
         .CreateNote(this.NotesForm.value)
         .subscribe((result: any) => {
           if (result.status == true) {

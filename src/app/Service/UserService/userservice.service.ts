@@ -49,13 +49,5 @@ export class UserserviceService {
       params
     );
   }
-  CreateNote(data: any) {
-    var user = JSON.parse(localStorage.getItem('FundooUser')!);
-    let params = {
-      Title: data.title,
-      Notes: data.Desc,
-      UserId: user.userId,
-    };
-    return this.httpService.post(`${environment.baseUrl}/api/addNote`, params);
-  }
+
 }
