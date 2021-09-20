@@ -4,6 +4,9 @@
   max-height: 500px;
   overflow-y: auto;
   position: relative;
+  border-radius: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .title {
   font-family: "Roboto", sans-serif;
@@ -11,7 +14,7 @@
   font-size: 17px;
   letter-spacing: 1px;
   border: none;
-  width: 40vw;
+  width: 35vw;
   &:focus-visible {
     outline: none !important;
   }
@@ -53,8 +56,8 @@
   display: flex;
   justify-content: space-between;
   border: 0.5px solid #ddd;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2),
     1px 1px 1px 1px rgba(0, 0, 0, 0.19);
   padding: 8px;
@@ -75,6 +78,10 @@
 .n-mat {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 ::ng-deep .ng-tns-c110-2 {
   padding: 5px !important;
