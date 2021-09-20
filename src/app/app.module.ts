@@ -30,8 +30,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './Components/dialog/dialog/dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
-
 @NgModule({
   declarations: [
     AppComponent,

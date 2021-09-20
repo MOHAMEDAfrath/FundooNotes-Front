@@ -65,9 +65,12 @@ mat-divider{
 .addperson{
     align-items: center ;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 25px;
     div{
     display: flex;
-    width: 94.1%;
+    width: 80%;
     }
 }
 .d-but{
@@ -78,5 +81,17 @@ mat-divider{
     background-color: #a8aaad79;
     div{
         width: 70%;
+    }
+}
+@media only screen and (max-width:850px) {
+
+    ::ng-deep .mat-dialog-container{
+        width: 60vw !important;
+    }
+}
+@media only screen and (max-width:470px) {
+
+    ::ng-deep .mat-dialog-container{
+        width: 100vw !important;
     }
 }

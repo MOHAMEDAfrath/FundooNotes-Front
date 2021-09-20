@@ -17,6 +17,7 @@ export class NoteComponent implements OnInit {
   NotesForm!: FormGroup;
   animal: string = '';
   name: string = (JSON.parse(localStorage.getItem('FundooUser')!)).userName;
+  email:string=(JSON.parse(localStorage.getItem('FundooUser')!)).emailId;
   dayArr = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat'];
   monthArr = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec']
   colourArr = [{colour:'white',tooltip:'White'},{colour:'#f28b82',tooltip:'Red'},{colour:'#fbbc04',tooltip:'Orange'},{colour:'#fff475',tooltip:'Yellow'},{colour:'#ccff90',tooltip:'Green'},{colour:'#a7ffeb',tooltip:'Teal'},{colour:'#cbf0f8',tooltip:'Blue'},{colour:'#aecbfa',tooltip:'Dark Blue'},{colour:'#d7aefb',tooltip:'Purple'},{colour:'#fdcfe8',tooltip:'Pink'}
@@ -27,6 +28,7 @@ export class NoteComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  tickcolor = "white";
   setColor = "white";
   constructor(
     private noteservice: NotesService,
@@ -52,7 +54,7 @@ export class NoteComponent implements OnInit {
     }
   }
   openDialog(){
-     let dialogref = this.dialog.open(DialogComponent,{data:{name : this.name, collab: this.collaboratorArr}});
+     let dialogref = this.dialog.open(DialogComponent,{data:{name : this.name,email:this.email, collab: this.collaboratorArr}});
   }
   autogrow() {
     var textArea = document.getElementById('notes')!;
