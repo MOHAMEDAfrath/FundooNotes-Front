@@ -37,12 +37,18 @@
   <div>
     <div class="i-main" *ngIf="dispNote">
       <div class="i-div">
-        <i class="material-icons">notifications_none</i>
+        <i class="material-icons" [matMenuTriggerFor]="Remainder">notifications_none</i>
+        <mat-menu #Remainder="matMenu" class="r-option">
+          <p class="r-par">Remainder:</p>
+          <button mat-menu-item class="remainder-but"><p>Later today</p><p>8:00PM</p></button>
+          <button mat-menu-item class="remainder-but"><p>Tomorrow</p><p>8:00AM</p></button>
+          <button mat-menu-item class="remainder-but"><p>Next Week</p><p>Mon 8:00AM</p></button>
+        </mat-menu>
         <i class="material-icons">person_add_alt_1</i>
         <i class="material-icons">color_lens</i>
         <i class="material-icons">image</i>
         <i class="material-icons">archive</i>
-        <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
+        <i class="material-icons more" [matMenuTriggerFor]="menu">more_vert</i>
         <mat-menu #menu="matMenu" class="i-option">
           <button
             mat-menu-item
