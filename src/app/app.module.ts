@@ -38,7 +38,7 @@ import { NoteComponent } from './Components/note/note.component';
     NoteComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
