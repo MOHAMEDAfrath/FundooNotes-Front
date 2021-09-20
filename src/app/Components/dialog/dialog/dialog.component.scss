@@ -14,11 +14,28 @@ mat-divider{
     margin-top: -10px;
 }
 .owner{
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     padding-left: 14px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+.owner.colab{
+    justify-content: space-between;
+    padding-right: 15px;
+    align-items: center;
+    .colab-in{
+        display: flex;
+    }
+    .clear{
+        padding: 10px;
+        &:hover{
+            border-radius: 50%;
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+    }
 }
 .o-name{
     display: flex;
@@ -26,7 +43,6 @@ mat-divider{
     padding-left: 5px;
 }
 .o-email{
-    margin-top: -20px;
     padding-left: 5px ;
 }
 .name-div{
