@@ -194,17 +194,79 @@ padding-bottom: 8px;
 ::ng-deep #mat-menu-panel-2 .mat-menu-content{
   div{
     display: flex;
-    width: 250px;
     align-items: center;
     padding: 9px;
     mat-icon{
-      margin-right: 10px;
+      &:focus-visible{
+        background: none ;
+      }
     }
     p{
       margin-bottom: 0px;
       margin-left: 3px;
     }
   }
+}
+::ng-deep #mat-menu-panel-2{
+  position: relative !important;
+  overflow-x: hidden;
+}
+.date-pick{
+  padding: 0px;
+  width: 95%;
+  margin-top: 5px;
+  ::ng-deep .mat-form-field-wrapper{
+    margin-bottom: 0px !important;
+  }
+}
+.time-pick{
+  border: none;
+  background: none;
+  display: flex;
+
+}
+.time-div{
+  display: flex;
+  justify-content: space-between;
+  width: 246px;
+}
+.time-but{
+  display: flex;
+  flex-direction: row-reverse;
+}
+.time-d{
+  font-family: 'Roboto' sans-serif;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  &:focus-visible{
+    outline: none;
+  }
+}
+.timeOption{
+  padding: 10px;
+  width: 250px;
+  display: none !important;
+  background-color: white;
+  .option{
+    display: flex;
+  justify-content: space-between;
+  &:hover{
+      cursor: pointer;
+      background-color: #ddd;
+  }
+  }
+}
+.timeOption.active{
+  position:fixed;
+  display: block !important;
+  top: 57%;
+  left: 39.52%;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2),
+  1px 1px 1px 1px rgba(0, 0, 0, 0.19);
+}
+.but-time{
+  position: relative;
 }
 ::ng-deep #mat-menu-panel-3 .mat-menu-content{
   width: 180px;
@@ -218,10 +280,29 @@ padding-bottom: 8px;
   align-items: center;
   border: none;
   background: none;
-  mat-label{
-    width: 200px;
+  &:hover{
+    background: none;
+  }
+  ::ng-deep .mat-form-field-flex{
+    background: none !important;
   }
 }
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: rgb(133, 129, 129) !important;
+ }
+ 
+ ::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: rgb(133, 129, 129) !important;;
+ }
+ 
+ ::ng-deep .mat-form-field-label {
+  /*change color of label*/
+  color: rgb(133, 129, 129) !important;
+ }
+
+
 .d-picker{
   display: flex !important;
   justify-content: space-between !important;

@@ -23,7 +23,20 @@
           [ngModel]="TitleNote"
           [ngStyle]="{ 'background-color': setColor }"
         />
-        <i matTooltip="Pin the note" class="material-icons-outlined i-pin">push_pin</i>
+        <i
+          matTooltip="Pin the note"
+          class="material-icons-outlined i-pin"
+          (click)="pinned = !pinned"
+          *ngIf="!pinned"
+          >push_pin</i
+        >
+        <i
+          matTooltip="Unpin the note"
+          class="material-icons i-pin"
+          (click)="pinned = !pinned"
+          *ngIf="pinned"
+          >push_pin</i
+        >
       </div>
       <div class="n-div">
         <textarea
@@ -70,7 +83,7 @@
           <button
             mat-menu-item
             class="remainder-but"
-            (click)="addRemainder = 'Today, 8:00PM'"
+            (click)="addRemainder = 'Today, 8:00PM';set()"
           >
             <p>Later today</p>
             <p>8:00PM</p>
@@ -78,7 +91,7 @@
           <button
             mat-menu-item
             class="remainder-but"
-            (click)="addRemainder = 'Tomorrow, 8:00AM'"
+            (click)="addRemainder = 'Tomorrow, 8:00AM';setTom()"
           >
             <p>Tomorrow</p>
             <p>8:00AM</p>
@@ -90,16 +103,49 @@
         </mat-menu>
         <mat-menu #Remainder_t class="r-option">
           <div>
-            <mat-icon class="material-icons">arrow_back</mat-icon>
+            <mat-icon style="margin-right: 10px;" class="material-icons" [matMenuTriggerFor]="Remainder" (click)="$event.stopPropagation()">arrow_back</mat-icon>
             <p class="r-par">Pick date & time</p>
           </div>
           <mat-divider></mat-divider>
-          <button
-            mat-menu-item
-            class="date-pick"
-            (click)="$event.stopPropagation()"
-          >
+          <button mat-menu-item class="date-pick" (click)="$event.stopPropagation()">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker"  [ngModel]="startDate" #date>
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </button>
+          <button mat-menu-item class="but-time" (click)="$event.stopPropagation()" (close)="timemenu=false">
+            <div class="time-div" (click)="timemenu=!timemenu">
+              <input type="text" class="time-d" value="{{timeValue}}" style="font-family: 'Roboto' sans-serif;" #time>
+              <mat-icon class="material-icons-outlined">keyboard_arrow_down</mat-icon>
+            </div>
+          </button>
+          <div class="timeOption" [class]="timemenu?'active':''">
+            <div class="option" (click)="$event.stopPropagation();timemenu=false;timeValue='9:00AM'">
+              <p>Morning</p>
+              <p>8:00AM</p>
+            </div>
+            <div class="option" (click)="$event.stopPropagation();timemenu=false;timeValue='1:00PM'">
+              <p>Afternoon</p>
+              <p>1:00PM</p>
+            </div>
+            <div class="option" (click)="$event.stopPropagation();timemenu=false;timeValue='6:00PM'">
+              <p>Evening</p>
+              <p>6:00PM</p>
+            </div>
+            <div class="option" (click)="$event.stopPropagation();timemenu=false;timeValue='8:00PM'">
+              <p>Night</p>
+              <p>8:00PM</p>
+            </div>
+            <div class="option" (click)="$event.stopPropagation();timemenu=false">
+              <p>Custom</p>
+            </div>
+          </div>
+          <div class='time-but'>
+            <button class="save" (click)="getDateTime(date.value,time.value)" mat-button *ngIf="!timemenu">Save</button>
+          </div>
         </mat-menu>
         <i
           class="material-icons-outlined"
@@ -151,9 +197,7 @@
       <button
         mat-button
         (click)="
-          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote
-        "
-      >
+          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';addRemainder='';">
         Close
       </button>
     </div>
