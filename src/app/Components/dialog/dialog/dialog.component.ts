@@ -32,6 +32,7 @@ export class DialogComponent implements OnInit {
     }
   }
   close(){
-    this.dialogRef.close(this.data.collab);
+    this.data.collab=[];
+     this.dialogRef.close(this.data.collab);
   }
  }
