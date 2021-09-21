@@ -7,7 +7,7 @@
       aria-label="Example icon-button with menu icon"
       (click) = "expand=!expand;toggle=!toggle"
     >
-      <mat-icon class="icon">menu</mat-icon>
+      <mat-icon class="icon" matTooltip="Main menu">menu</mat-icon>
     </button>
     <img
       class="gb_tc gb_6d"
@@ -24,7 +24,7 @@
   </div>
   <div class="search" [class] = '!clickSearch?"media-search-div":""'>
     <mat-form-field class="s-input" appearance="outline" [class] = '!clickSearch?"media-search":""'>
-      <mat-icon matPrefix *ngIf="clickSearch">search</mat-icon>
+      <mat-icon matPrefix matTooltip="Search" *ngIf="clickSearch">search</mat-icon>
       <mat-icon class="material-icons class" matPrefix (click) = "clickSearch=!clickSearch;searchIcon=!searchIcon" *ngIf = "!clickSearch">arrow_back</mat-icon>
       <input matInput placeholder="Search" (change)="searchInp = changeSearch($event)" [value] = "searchInp"/>
       <i class="material-icons icon" matSuffix *ngIf="searchInp.length>0" (click) = 'searchInp = ""'>clear</i>
@@ -32,14 +32,14 @@
   </div>
   <div class="icons">
     <mat-icon matPrefix class="ic-search" (click) = "clickSearch=!clickSearch;searchIcon=!searchIcon" *ngIf="searchIcon == true">search</mat-icon>
-    <i class="material-icons icon" *ngIf="!isGrid" (click)="isGrid=true">view_list</i>
-    <i class="material-icons icon" *ngIf="isGrid" (click)="isGrid=false">grid_view</i>
+    <i class="material-icons icon" *ngIf="!isGrid" matTooltip="List View" (click)="isGrid=true">view_list</i>
+    <i class="material-icons icon" *ngIf="isGrid" matTooltip="Grid View" (click)="isGrid=false">grid_view</i>
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"
       aria-label="Example icon-button with a menu"
     >
-      <i class="material-icons person">person</i>
+      <i class="material-icons person" matTooltip="Account">person</i>
     </button>
     <mat-menu #menu="matMenu" class="acc-menu">
       <i class="material-icons person menuIcon">person</i>
