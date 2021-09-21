@@ -185,6 +185,12 @@ padding-bottom: 8px;
   }
   
 }
+.chips{
+  display: flex;
+  div{
+    margin-right: 5px;
+  }
+}
 ::ng-deep .mat-tooltip {
   padding-left: 6px !important;
   padding-right: 6px !important;

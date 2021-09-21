@@ -50,16 +50,29 @@
           [ngStyle]="{ 'background-color': setColor }"
         ></textarea>
       </div>
-      <div class="chip-div" *ngIf="addRemainder.length > 0">
+      <div class="chips">
+        <div class="chip-div" *ngIf="addRemainder.length > 0">
+          <i class="material-icons-outlined">access_time</i>
+          <p class="chip">{{ addRemainder }}</p>
+          <button
+            class="chip-but"
+            matTooltip="Delete Remainder"
+            (click)="addRemainder = ''"
+          >
+            <i class="material-icons-outlined">close</i>
+          </button>
+        </div>
+      <div class="chip-div" *ngFor="let notelabel of noteLabels">
         <i class="material-icons-outlined">access_time</i>
-        <p class="chip">{{ addRemainder }}</p>
+        <p class="chip">{{notelabel}}</p>
         <button
           class="chip-but"
           matTooltip="Delete Remainder"
-          (click)="addRemainder = ''"
+          (click)="noteLabels.splice(noteLabels.indexOf(notelabel),1)"
         >
           <i class="material-icons-outlined">close</i>
         </button>
+      </div>
       </div>
     </form>
   </mat-card>
@@ -197,7 +210,7 @@
       <button
         mat-button
         (click)="
-          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';addRemainder='';pinned=false">
+          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';addRemainder='';pinned=false;isarchive=false">
         Close
       </button>
     </div>

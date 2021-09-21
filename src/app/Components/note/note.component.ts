@@ -65,6 +65,7 @@ export class NoteComponent implements OnInit {
   timemenu = false;
   isarchive = false;
   timeValue = "8:00AM"
+  noteLabels =[];
   constructor(
     private noteservice: NotesService,
     private snackBar: MatSnackBar,
