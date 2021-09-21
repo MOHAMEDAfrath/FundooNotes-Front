@@ -61,6 +61,8 @@ mat-divider{
         outline: none;
     }
     width: 100%;
+    font-family: 'Roboto' sans-serif;
+    font-size: 16px;
 }
 .addperson{
     align-items: center ;
@@ -83,6 +85,25 @@ mat-divider{
         width: 70%;
     }
 }
+.owner-main{
+    overflow-y: auto;
+    max-height: 400px;
+}
+.owner-main::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .owner-main::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .owner-main::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  .owner-main::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 @media only screen and (max-width:850px) {
 
     ::ng-deep .mat-dialog-container{

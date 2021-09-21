@@ -173,6 +173,9 @@ padding-bottom: 8px;
   i{
     font-size: 17px;
     color: rgba(0,0,0,0.65);
+    &:hover{
+      border-radius: 50%;
+    }
   }
   &:hover{
     .chip-but{
@@ -206,6 +209,19 @@ padding-bottom: 8px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+}
+.date-pick{
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  mat-label{
+    width: 200px;
+  }
+}
+.d-picker{
+  display: flex !important;
+  justify-content: space-between !important;
 }
 @media only screen and (max-width: 650px) {
   .i-div {

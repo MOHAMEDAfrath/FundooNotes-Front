@@ -26,7 +26,7 @@
     <mat-form-field class="s-input" appearance="outline" [class] = '!clickSearch?"media-search":""'>
       <mat-icon matPrefix matTooltip="Search" *ngIf="clickSearch">search</mat-icon>
       <mat-icon class="material-icons class" matPrefix (click) = "clickSearch=!clickSearch;searchIcon=!searchIcon" *ngIf = "!clickSearch">arrow_back</mat-icon>
-      <input matInput placeholder="Search" (change)="searchInp = changeSearch($event)" [value] = "searchInp"/>
+      <input matInput placeholder="Search"  [(ngModel)] = "searchInp"/>
       <i class="material-icons icon" matSuffix *ngIf="searchInp.length>0" (click) = 'searchInp = ""'>clear</i>
     </mat-form-field>
   </div>
@@ -39,7 +39,7 @@
       [matMenuTriggerFor]="menu"
       aria-label="Example icon-button with a menu"
     >
-      <i class="material-icons person" matTooltip="Account">person</i>
+      <i class="material-icons person" matTooltip="Account {{Name}} {{Email}}">person</i>
     </button>
     <mat-menu #menu="matMenu" class="acc-menu">
       <i class="material-icons person menuIcon">person</i>

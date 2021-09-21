@@ -30,6 +30,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './Components/dialog/dialog/dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatDividerModule,
     MatDialogModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   entryComponents:[DialogComponent],
   providers: [],

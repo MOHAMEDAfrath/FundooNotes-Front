@@ -1,5 +1,6 @@
 <h2>Collaborator</h2>
 <mat-divider></mat-divider>
+<div class="owner-main">
 <div class="owner">
     <div>
         <i class="material-icons ownerIcon">person</i>
@@ -24,10 +25,11 @@
 <div class="owner addperson">
     <div>
         <i class="material-icons add-icon ownerIcon">person_add_alt_1</i>
-        <input type="email" placeholder="Person or email to share with" id = "add-email" class="add-email" (change)="colab_email=changeText($event)" [value]="colab_email"/> 
+        <input type="email" placeholder="Person or email to share with" id = "add-email" class="add-email"  [(ngModel)]="colab_email"/> 
     </div>
        
         <i class="material-icons t-icons" *ngIf="colab_email.length>0" (click)="data.collab.push(colab_email);colab_email=''">check</i>   
+</div>
 </div>
 <div class="d-but">
 <button mat-button>Save</button>
