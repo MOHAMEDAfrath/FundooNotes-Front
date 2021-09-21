@@ -73,6 +73,9 @@
           <i class="material-icons-outlined">close</i>
         </button>
       </div>
+      <div  *ngFor="let person of collaboratorArr">
+        <i style="color: blue;" class="material-icons" [matTooltip]="'Shared with '+person['name']">person_pin</i>
+      </div>
       </div>
     </form>
   </mat-card>
@@ -210,7 +213,7 @@
       <button
         mat-button
         (click)="
-          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';addRemainder='';pinned=false;isarchive=false">
+          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';addRemainder='';pinned=false;isarchive=false;collaboratorArr=[]">
         Close
       </button>
     </div>

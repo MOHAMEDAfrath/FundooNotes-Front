@@ -36,5 +36,9 @@ export class NotesService {
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/getLabel`,params,true,this.header);
   }
+  checkEmail(colab:any){
+    let params = new HttpParams().set('email',colab);
+    return this.httpService.post(`${environment.baseUrl}/api/checkEmail`,params);
+  }
 }
 

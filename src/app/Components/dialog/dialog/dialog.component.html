@@ -16,8 +16,8 @@
         <i class="material-icons ownerIcon">person</i>
     </div>
     <div>
-    <h3 class="o-name">{{data.name}}</h3>
-    <p class="o-email">{{colab}}</p>
+    <h3 class="o-name">{{colab.name}}</h3>
+    <p class="o-email">{{colab.email}}</p>
     </div>
     </div>
     <i class="material-icons icon clear" (click)="data.collab.splice(data.collab.indexOf(colab),1)">clear</i>
@@ -25,14 +25,14 @@
 <div class="owner addperson">
     <div>
         <i class="material-icons add-icon ownerIcon">person_add_alt_1</i>
-        <input type="email" placeholder="Person or email to share with" id = "add-email" class="add-email"  [(ngModel)]="colab_email"/> 
+        <input type="email" placeholder="Person or email to share with" id = "add-email" class="add-email"  [(ngModel)]="colab_email"/>
     </div>
        
-        <i class="material-icons t-icons" *ngIf="colab_email.length>0" (click)="data.collab.push(colab_email);colab_email=''">check</i>   
+        <i class="material-icons t-icons" *ngIf="colab_email.length>0" (click)="addColab(colab_email);colab_email=''">check</i>   
 </div>
 </div>
 <div class="d-but">
-<button mat-button>Save</button>
+<button mat-button (click)="close()">Save</button>
 <button mat-button mat-dialog-close>Cancel</button>
 <div></div>
 </div>

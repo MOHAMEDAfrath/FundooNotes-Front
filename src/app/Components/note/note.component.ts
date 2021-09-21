@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { DialogComponent } from '../dialog/dialog/dialog.component';
 
+
 import { NativeDateAdapter, DateAdapter,
   MAT_DATE_FORMATS } from '@angular/material/core';
  import { formatDate } from '@angular/common';
@@ -93,6 +94,10 @@ export class NoteComponent implements OnInit {
   }
   openDialog(){
      let dialogref = this.dialog.open(DialogComponent,{data:{name : this.name,email:this.email, collab: this.collaboratorArr}});
+     dialogref.afterClosed().subscribe((result)=>{
+       console.log(result);
+       this.collaboratorArr = result;
+      })
   }
   autogrow() {
     var textArea = document.getElementById('notes')!;

@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotesService } from 'src/app/Service/notesService/notes.service';
 
 @Component({
   selector: 'app-dialog',
@@ -8,16 +10,28 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  
+  user = JSON.parse(localStorage.getItem('FundooUser')!);
   colab_email:any="";
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any,
+  private notesservice:NotesService,private snack:MatSnackBar,
+  private dialogRef: MatDialogRef<DialogComponent>) { }
   ngOnInit(): void {
 
   }
   changeText(event:any){
       return event.target.value;
+    }
+    addColab(colab:any){
+      if(colab!=this.user.emailId){
+      this.notesservice.checkEmail(colab).
+      subscribe((result:any)=>{
+        this.data.collab.push({email:colab,name:result.data});
+      })
+    }else{
+        this.snack.open('Owner Exists !','',{duration:3000});
+    }
   }
-//   removeColab(colab:any){
-//     console.log(colab);
-//   }
+  close(){
+    this.dialogRef.close(this.data.collab);
+  }
  }
