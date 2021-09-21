@@ -11,12 +11,16 @@ export class NotesService {
    header:any='';
   constructor(private httpService: HttpserviceService,
     ) { }
-  CreateNote(data: any) {
+  CreateNote(data: any,pin:boolean,archive:boolean,color:string,remainder:string) {
    
     let params = {
       Title: data.title,
       Notes: data.Desc,
       UserId: this.user.userId,
+      Remainder:remainder,
+      Color:color,
+      Is_Archive:archive,
+      Is_Pin:pin
     };
     this.getToken()
     console.log(this.header);

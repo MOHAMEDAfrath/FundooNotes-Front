@@ -63,6 +63,7 @@ export class NoteComponent implements OnInit {
   pinned=false;
   startDate:any;
   timemenu = false;
+  isarchive = false;
   timeValue = "8:00AM"
   constructor(
     private noteservice: NotesService,
@@ -81,7 +82,7 @@ export class NoteComponent implements OnInit {
   createNote() {
     if (this.NotesForm.value.title != '' || this.NotesForm.value.Desc != '') {
       this.noteservice
-        .CreateNote(this.NotesForm.value)
+        .CreateNote(this.NotesForm.value,this.pinned,this.isarchive,this.setColor,this.addRemainder)
         .subscribe((result: any) => {
           if (result.status == true) {
             this.snackBar.open(result.message, '', { duration: 3000 });
