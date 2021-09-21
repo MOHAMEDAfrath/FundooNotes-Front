@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpserviceService } from '../HttpService/httpservice.service';
@@ -25,6 +26,11 @@ export class NotesService {
     this.header = {
       headers: {Authorization: "Bearer " + this.user.token}
     }
+  }
+  getLabels(){
+    let params = new HttpParams().set('userId',this.user.userId);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/getLabel`,params,true,this.header);
   }
 }
 

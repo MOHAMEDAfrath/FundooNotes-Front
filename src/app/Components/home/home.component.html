@@ -53,25 +53,29 @@
 </mat-toolbar>
 <div class="Main-Div">
     <div class="SideNav" (mouseenter)="toggle?expand=true:''" (mouseleave) = "toggle?expand=false:''" [class] = '!expand?"expand":""'>
-        <div class="options" (click)="isOption=1" [class] = 'isOption == 1?"active":""'>
+        <div class="options" (click)="isOption=1;isOptions=''" [class] = 'isOption == 1?"active":""'>
             <i class="material-icons">lightbulb_outline</i>
             <p class="iconName">Notes</p>
         </div>
-        <div class="options" (click)="isOption=2" [class] = 'isOption == 2?"active":""'>
+        <div class="options" (click)="isOption=2;isOptions=''" [class] = 'isOption == 2?"active":""'>
             <i class="material-icons">notifications_none</i>
             <p class="iconName">Reminder</p>
         </div>
-        <div class="options" (click)="isOption=3" [class] = 'isOption == 3?"active":""'>
+        <div class="options" (click)="isOptions=label['labelName'];isOption=0" [class] = 'isOptions == label["labelName"]?"active":""' *ngFor="let label of userLabels">
+          <i class="material-icons">label_outline</i>
+          <p class="iconName">{{label['labelName']}}</p>
+      </div>
+        <div class="options" (click)="isOption=3;isOptions=''" [class] = 'isOption == 3?"active":""'>
             <i class="material-icons">edit</i>
             <p class="iconName">Edit Label</p>
         </div>
-        <div class="options" (click)="isOption=4"  [class] = 'isOption == 4?"active":""'>
+        <div class="options" (click)="isOption=4;isOptions=''"  [class] = 'isOption == 4?"active":""'>
             <i class="material-icons">archive</i>
             <p class="iconName">Archive</p>
         </div>
-        <div class="options" (click)="isOption=5" [class] = 'isOption == 5?"active":""'>
+        <div class="options" (click)="isOption=5;isOptions=''" [class] = 'isOption == 5?"active":""'>
             <i class="material-icons">delete_outline</i>
-            <p class="iconName">Delete</p>
+            <p class="iconName">Trash</p>
         </div>
     </div>
     <div class="NoteContent" [class] = '!expand?"expand":""'>

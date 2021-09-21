@@ -128,6 +128,7 @@ mat-divider {
     padding-top: 10px;
     position: relative;
     box-sizing: border-box;
+    overflow-y: auto;
     .options {
       display: flex;
       align-items: center;
@@ -169,6 +170,21 @@ mat-divider {
   .NoteContent.expand {
     width: calc(100% - 80px);
   }
+}
+.SideNav::-webkit-scrollbar {
+  width: 10px;
+}
+
+.SideNav::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.SideNav::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.SideNav::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 .c-note {
   display: flex;

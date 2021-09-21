@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotesService } from 'src/app/Service/notesService/notes.service';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,19 @@ export class HomeComponent implements OnInit {
   isGrid = true;
   isSearch = false;
   isOption = 1;
+  isOptions:string='';
   searchInp = "";
   expand =true;
   toggle = false;
   clickSearch = true;
   searchIcon = true;
-  constructor(private route : Router) { }
+  userLabels = [];
+  constructor(private route : Router,private noteservice: NotesService) { }
 
   ngOnInit(): void {
     this.checkLocalStorage()
     this.getFromLocalStorage()
+    this.getLabels();
   }
   async getFromLocalStorage(){
       var user = JSON.parse(localStorage.getItem("FundooUser")!);
@@ -44,5 +48,12 @@ export class HomeComponent implements OnInit {
     if(user == null){
       this.route.navigateByUrl('/login');
     }
+  }
+  getLabels(){
+    this.noteservice.getLabels().
+    subscribe((result:any)=>{
+        this.userLabels = result.data;
+        console.log(result)
+    })
   }
 }
