@@ -2,8 +2,8 @@
   <mat-card (click)="dispNote = !dispNote" *ngIf="!dispNote">
     <div class="t-div">
       <input type="text" class="title" placeholder="Take a note..." />
-      <i class="material-icons t-icons">check</i>
-      <i class="material-icons t-icons">image</i>
+      <i class="material-icons-outlined t-icons">check</i>
+      <i class="material-icons-outlined t-icons">image</i>
     </div>
   </mat-card>
   <mat-card
@@ -23,7 +23,7 @@
           [ngModel]="TitleNote"
           [ngStyle]="{ 'background-color': setColor }"
         />
-        <i matTooltip="Pin the note" class="material-icons i-pin">push_pin</i>
+        <i matTooltip="Pin the note" class="material-icons-outlined i-pin">push_pin</i>
       </div>
       <div class="n-div">
         <textarea
@@ -38,14 +38,14 @@
         ></textarea>
       </div>
       <div class="chip-div" *ngIf="addRemainder.length > 0">
-        <i class="material-icons">access_time</i>
+        <i class="material-icons-outlined">access_time</i>
         <p class="chip">{{ addRemainder }}</p>
         <button
           class="chip-but"
           matTooltip="Delete Remainder"
           (click)="addRemainder = ''"
         >
-          <i class="material-icons">close</i>
+          <i class="material-icons-outlined">close</i>
         </button>
       </div>
     </form>
@@ -58,7 +58,7 @@
     >
       <div class="i-div">
         <i
-          class="material-icons"
+          class="material-icons-outlined"
           matTooltip="Remind me"
           [matMenuTriggerFor]="
             addRemainder.length == 0 ? Remainder : Remainder_t
@@ -102,13 +102,13 @@
           </button>
         </mat-menu>
         <i
-          class="material-icons"
+          class="material-icons-outlined"
           matTooltip="Collaborator"
           (click)="openDialog()"
           >person_add_alt_1</i
         >
         <i
-          class="material-icons"
+          class="material-icons-outlined"
           matTooltip="Change Color"
           [matMenuTriggerFor]="Color"
           >color_lens</i
@@ -124,10 +124,10 @@
             <i class="material-icons" *ngIf="setColor == color.colour">check</i>
           </div>
         </mat-menu>
-        <i class="material-icons" matTooltip="Add image">image</i>
-        <i class="material-icons" matTooltip="Archive">archive</i>
+        <i class="material-icons-outlined" matTooltip="Add image">image</i>
+        <i class="material-icons-outlined" matTooltip="Archive">archive</i>
         <i
-          class="material-icons more"
+          class="material-icons-outlined more"
           matTooltip="More"
           [matMenuTriggerFor]="menu"
           >more_vert</i
