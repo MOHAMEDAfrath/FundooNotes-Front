@@ -35,6 +35,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { NotesdialogComponent } from './Components/notesdialog/notesdialog.component';
 import { GetnotecomponentComponent } from './Components/getnotecomponent/getnotecomponent.component';
+import { GetArchiveComponent } from './Components/get-archive/get-archive.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { GetnotecomponentComponent } from './Components/getnotecomponent/getnote
     NoteComponent,
     DialogComponent,
     NotesdialogComponent,
-    GetnotecomponentComponent
+    GetnotecomponentComponent,
+    GetArchiveComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -28,37 +28,24 @@ import { MatDialog } from '@angular/material/dialog';
        }
    }
  }
+
 @Component({
-  selector: 'app-getnotecomponent',
-  templateUrl: './getnotecomponent.component.html',
-  styleUrls: ['./getnotecomponent.component.scss'],
+  selector: 'app-get-archive',
+  templateUrl: './get-archive.component.html',
+  styleUrls: ['./get-archive.component.scss'],
   providers: [
     {provide: DateAdapter, useClass: PickDateAdapter},
     {provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS},
     DatePipe
 ]
 })
-export class GetnotecomponentComponent implements OnInit {
-
+export class GetArchiveComponent implements OnInit {
   pin_dis = false; 
   Name = '';
   Email = '';
-  isGrid = true;
-  isSearch = false;
-  isOption = 1;
-  isOptions:string='';
-  searchInp = "";
-  expand =true;
-  toggle = false;
-  clickSearch = true;
-  searchIcon = true;
-  userLabels = [];
-  userNotes = [];
-  userPinnedNotes = [];
   dispNote = false;
   DescNote: string = '';
   TitleNote: string = '';
-  NotesForm!: FormGroup;
   dayArr = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat'];
   monthArr = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec']
   colourArr = [{colour:'white',tooltip:'White'},{colour:'#f28b82',tooltip:'Red'},{colour:'#fbbc04',tooltip:'Orange'},{colour:'#fff475',tooltip:'Yellow'},{colour:'#ccff90',tooltip:'Green'},{colour:'#a7ffeb',tooltip:'Teal'},{colour:'#cbf0f8',tooltip:'Blue'},{colour:'#aecbfa',tooltip:'Dark Blue'},{colour:'#d7aefb',tooltip:'Purple'},{colour:'#fdcfe8',tooltip:'Pink'}
@@ -74,40 +61,18 @@ export class GetnotecomponentComponent implements OnInit {
   isarchive = false;
   timeValue = "8:00AM"
   noteLabels =[];
+  archiveNotes=[];
   constructor(private noteservice:NotesService,
-    private dialog:MatDialog
-    ) { }
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.getFromLocalStorage();
-    this.getDate();
-    this.getLabels();
-    this.getUserNotes();
+    this.getArchive();
   }
- 
   async getFromLocalStorage(){
     var user = JSON.parse(localStorage.getItem("FundooUser")!);
     this.Name = user.userName;
     this.Email = user.emailId;
-}
-getLabels(){
-  this.noteservice.getLabels().
-  subscribe((result:any)=>{
-      this.userLabels = result.data;
-      console.log(result)
-  })
-}
-getUserNotes(){
-  this.noteservice.getUserNotes().subscribe((result:any)=>{
-    console.log(result.data);
-    this.userNotes = result.data;
-    for(let notes of this.userNotes){
-      if(notes['is_Pin'] == true){
-        this.pin_dis = true;
-        return;
-      }
-    }
-  })
 }
 openNoteDialog(notes:any){
   let dialogref = this.dialog.open(NotesdialogComponent,{data:{notes}});
@@ -128,43 +93,46 @@ autogrow() {
  textArea.style.height = 'auto';
  textArea.style.height = textArea.scrollHeight + 'px';
 }
-checkMenu(event: any) {
- return event.target.value;
-}
 getDate(){
- let date = new Date().getDay();
- this.remainder = this.dayArr[date]+", 8:00AM";
-}
-setRemainder(){
- let date = new Date();
-  date.setDate(date.getDate()+7);
- this.addRemainder= this.monthArr[date.getMonth()]+" "+date.getDate()+", 8:00AM";
- this.startDate = date;
- console.log(this.addRemainder)
-}
-set(){
- this.startDate = new Date();
-}
-setTom(){
- this.startDate = new Date();
- this.startDate.setDate(this.startDate.getDate()+1);    
-}
-getDateTime(data:any,time:any){
- console.log(data)
- console.log(time)
- var date = new Date();
- var today = this.monthArr[date.getMonth()]+" "+date.getDate()+","+date.getFullYear();
- console.log(today)
- if(data == today){
-     data = "Today"
+  let date = new Date().getDay();
+  this.remainder = this.dayArr[date]+", 8:00AM";
  }
- date.setDate(date.getDate()+1);
- var tom = this.monthArr[date.getMonth()]+" "+date.getDate()+","+date.getFullYear();
- if(data == tom){
-   console.log(tom);
-   data="Tommorow"
- }    
- //console.log(today);
- this.addRemainder = data+", "+time
-}
+ setRemainder(){
+  let date = new Date();
+   date.setDate(date.getDate()+7);
+  this.addRemainder= this.monthArr[date.getMonth()]+" "+date.getDate()+", 8:00AM";
+  this.startDate = date;
+  console.log(this.addRemainder)
+ }
+ set(){
+  this.startDate = new Date();
+ }
+ setTom(){
+  this.startDate = new Date();
+  this.startDate.setDate(this.startDate.getDate()+1);    
+ }
+ getDateTime(data:any,time:any){
+  console.log(data)
+  console.log(time)
+  var date = new Date();
+  var today = this.monthArr[date.getMonth()]+" "+date.getDate()+","+date.getFullYear();
+  console.log(today)
+  if(data == today){
+      data = "Today"
+  }
+  date.setDate(date.getDate()+1);
+  var tom = this.monthArr[date.getMonth()]+" "+date.getDate()+","+date.getFullYear();
+  if(data == tom){
+    console.log(tom);
+    data="Tommorow"
+  }    
+  //console.log(today);
+  this.addRemainder = data+", "+time
+ }
+ getArchive(){
+ this.noteservice.getArchive().subscribe((result:any)=>{
+   console.log(result.data);
+   this.archiveNotes = result.data;
+ })
+ }
 }
