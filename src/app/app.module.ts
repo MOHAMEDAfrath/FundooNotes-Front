@@ -37,6 +37,7 @@ import { NotesdialogComponent } from './Components/notesdialog/notesdialog.compo
 import { GetnotecomponentComponent } from './Components/getnotecomponent/getnotecomponent.component';
 import { GetArchiveComponent } from './Components/get-archive/get-archive.component';
 import { GetRemainderComponent } from './Components/get-remainder/get-remainder.component';
+import { GetTrashComponent } from './Components/get-trash/get-trash.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { GetRemainderComponent } from './Components/get-remainder/get-remainder.
     NotesdialogComponent,
     GetnotecomponentComponent,
     GetArchiveComponent,
-    GetRemainderComponent
+    GetRemainderComponent,
+    GetTrashComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

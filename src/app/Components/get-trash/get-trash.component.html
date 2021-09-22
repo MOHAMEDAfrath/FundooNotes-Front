@@ -1,0 +1,22 @@
+<div class="overall-div">
+    <mat-card
+    class="card-disp"
+    *ngFor="let trash of trashNotes"
+      >
+    <div class="d-tit">
+      {{trash['title']}}
+    </div>
+    <div class="d-con">
+        {{trash['notes']}}
+    </div>
+    <div class="over-con">
+       <div>
+
+       </div>
+      <div class="i-div">
+        <i class="material-icons">delete_forever</i>
+        <i class="material-icons">restore_from_trash</i>
+        </div>
+    </div>
+    </mat-card>
+</div>

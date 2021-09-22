@@ -55,6 +55,11 @@ export class NotesService {
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/GetRemainderNotes`,params,true,this.header);
   }
+  getTrash(){
+    let params = new HttpParams().set('userId',this.user.userId);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/GetTrashNotes`,params,true,this.header);
+  }
 
 }
 
