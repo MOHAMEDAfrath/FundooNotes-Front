@@ -36,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { NotesdialogComponent } from './Components/notesdialog/notesdialog.component';
 import { GetnotecomponentComponent } from './Components/getnotecomponent/getnotecomponent.component';
 import { GetArchiveComponent } from './Components/get-archive/get-archive.component';
+import { GetRemainderComponent } from './Components/get-remainder/get-remainder.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { GetArchiveComponent } from './Components/get-archive/get-archive.compon
     DialogComponent,
     NotesdialogComponent,
     GetnotecomponentComponent,
-    GetArchiveComponent
+    GetArchiveComponent,
+    GetRemainderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

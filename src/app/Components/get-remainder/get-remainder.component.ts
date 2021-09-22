@@ -9,37 +9,36 @@ import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { MatDialog } from '@angular/material/dialog';
  
- export const PICK_FORMATS = {
-   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
-   display: {
-       dateInput: 'input',
-       monthYearLabel: {year: 'numeric', month: 'short'},
-       dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
-       monthYearA11yLabel: {year: 'numeric', month: 'long'}
-   }
- };
- 
- class PickDateAdapter extends NativeDateAdapter {
-   format(date: Date, displayFormat: Object): string {
-       if (displayFormat === 'input') {
-           return formatDate(date,'MMM dd,yyyy',this.locale);;
-       } else {
-           return date.toDateString();
-       }
-   }
- }
+export const PICK_FORMATS = {
+  parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
+  display: {
+      dateInput: 'input',
+      monthYearLabel: {year: 'numeric', month: 'short'},
+      dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
+      monthYearA11yLabel: {year: 'numeric', month: 'long'}
+  }
+};
 
+class PickDateAdapter extends NativeDateAdapter {
+  format(date: Date, displayFormat: Object): string {
+      if (displayFormat === 'input') {
+          return formatDate(date,'MMM dd,yyyy',this.locale);;
+      } else {
+          return date.toDateString();
+      }
+  }
+}
 @Component({
-  selector: 'app-get-archive',
-  templateUrl: './get-archive.component.html',
-  styleUrls: ['./get-archive.component.scss'],
+  selector: 'app-get-remainder',
+  templateUrl: './get-remainder.component.html',
+  styleUrls: ['./get-remainder.component.scss'],
   providers: [
     {provide: DateAdapter, useClass: PickDateAdapter},
     {provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS},
     DatePipe
 ]
 })
-export class GetArchiveComponent implements OnInit {
+export class GetRemainderComponent implements OnInit {
   Name = '';
   Email = '';
   dispNote = false;
@@ -59,13 +58,13 @@ export class GetArchiveComponent implements OnInit {
   timemenu = false;
   isarchive = false;
   timeValue = "8:00AM"
-  archiveNotes=[];
+  remainderNotes=[];
   constructor(private noteservice:NotesService,
     private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.getFromLocalStorage();
-    this.getArchive();
+    this.getRemainder();
   }
   async getFromLocalStorage(){
     var user = JSON.parse(localStorage.getItem("FundooUser")!);
@@ -127,10 +126,10 @@ getDate(){
   //console.log(today);
   this.addRemainder = data+", "+time
  }
- getArchive(){
- this.noteservice.getArchive().subscribe((result:any)=>{
+ getRemainder(){
+ this.noteservice.getRemainder().subscribe((result:any)=>{
    console.log(result.data);
-   this.archiveNotes = result.data;
+   this.remainderNotes = result.data;
  })
  }
 }

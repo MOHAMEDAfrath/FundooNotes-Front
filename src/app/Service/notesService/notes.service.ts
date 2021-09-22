@@ -50,6 +50,11 @@ export class NotesService {
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/GetArchiveNotes`,params,true,this.header);
   }
+  getRemainder(){
+    let params = new HttpParams().set('userId',this.user.userId);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/GetRemainderNotes`,params,true,this.header);
+  }
 
 }
 
