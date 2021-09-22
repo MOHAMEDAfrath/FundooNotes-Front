@@ -40,5 +40,16 @@ export class NotesService {
     let params = new HttpParams().set('email',colab);
     return this.httpService.post(`${environment.baseUrl}/api/checkEmail`,params);
   }
+  getUserNotes(){
+    let params = new HttpParams().set('userId',this.user.userId);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/getNote`,params,true,this.header);
+  }
+  getArchive(){
+    let params = new HttpParams().set('userId',this.user.userId);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/GetArchiveNotes`,params,true,this.header);
+  }
+
 }
 

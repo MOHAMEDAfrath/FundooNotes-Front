@@ -88,15 +88,19 @@ padding-bottom: 8px;
 ::ng-deep .ng-trigger {
     padding: 0px !important;
 }
-::ng-deep #mat-menu-panel-1{
-  max-width: 300px;
+::ng-deep .remainder-menu .mat-menu-content{
+  max-width: 300px !important;
   width: 300px !important;
+  overflow: hidden !important;
  .r-par{
   align-self: flex-start;
   margin-left: 15px;
   padding-top: 5px;
   font-family: 'Roboto',sans-serif;
  }
+}
+::ng-deep .remainder-menu {
+  max-width: 300px;
 }
 .i-but {
   background: none;
@@ -160,6 +164,11 @@ padding-bottom: 8px;
   width: max-content;
   padding: 4px 10px;
   border-radius: 15px;
+  &:hover{
+    .chip-but{
+      display: block;
+    }
+  }
   p{
     margin: 0px;
     margin-left: 5px;
@@ -178,12 +187,6 @@ padding-bottom: 8px;
       border-radius: 50%;
     }
   }
-  &:hover{
-    .chip-but{
-      display: block;
-    }
-  }
-  
 }
 .chips{
   display: flex;
@@ -197,7 +200,7 @@ padding-bottom: 8px;
   font-family: 'Roboto' sans-serif;
   font-size: 12px;
 }
-::ng-deep #mat-menu-panel-2 .mat-menu-content{
+::ng-deep .remainder-menu-2 .mat-menu-content{
   div{
     display: flex;
     align-items: center;
@@ -213,10 +216,7 @@ padding-bottom: 8px;
     }
   }
 }
-::ng-deep #mat-menu-panel-2{
-  position: relative !important;
-  overflow-x: hidden;
-}
+
 .date-pick{
   padding: 0px;
   width: 95%;
@@ -274,7 +274,7 @@ padding-bottom: 8px;
 .but-time{
   position: relative;
 }
-::ng-deep #mat-menu-panel-3 .mat-menu-content{
+::ng-deep .color-menu .mat-menu-content{
   width: 180px;
   padding: 8px;
   display: flex;

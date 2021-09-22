@@ -31,8 +31,11 @@ export class DialogComponent implements OnInit {
         this.snack.open('Owner Exists !','',{duration:3000});
     }
   }
-  close(){
-    this.data.collab=[];
+  save(){
      this.dialogRef.close(this.data.collab);
+  }
+  close(){
+    this.data.collab = [];
+    this.dialogRef.close(this.data.collab);
   }
  }

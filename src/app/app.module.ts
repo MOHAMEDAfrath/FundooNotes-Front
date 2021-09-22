@@ -33,6 +33,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { NotesdialogComponent } from './Components/notesdialog/notesdialog.component';
+import { GetnotecomponentComponent } from './Components/getnotecomponent/getnotecomponent.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import {MatSelectModule} from '@angular/material/select';
     ResetComponent,
     HomeComponent,
     NoteComponent,
-    DialogComponent
+    DialogComponent,
+    NotesdialogComponent,
+    GetnotecomponentComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -70,7 +74,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatNativeDateModule,
     MatSelectModule
   ],
-  entryComponents:[DialogComponent],
+  entryComponents:[DialogComponent,NotesdialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

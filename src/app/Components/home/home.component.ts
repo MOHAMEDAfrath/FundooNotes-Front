@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog/dialog.component';
+import { FormGroup } from '@angular/forms';
+import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+
 })
 export class HomeComponent implements OnInit {
   Name = '';
