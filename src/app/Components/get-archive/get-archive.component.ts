@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NativeDateAdapter, DateAdapter,
   MAT_DATE_FORMATS } from '@angular/material/core';
  import { formatDate } from '@angular/common';
@@ -38,7 +38,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     {provide: DateAdapter, useClass: PickDateAdapter},
     {provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS},
     DatePipe
-]
+],
+encapsulation:ViewEncapsulation.None
 })
 export class GetArchiveComponent implements OnInit {
   Name = '';

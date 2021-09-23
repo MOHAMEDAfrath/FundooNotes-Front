@@ -38,6 +38,7 @@ import { GetnotecomponentComponent } from './Components/getnotecomponent/getnote
 import { GetArchiveComponent } from './Components/get-archive/get-archive.component';
 import { GetRemainderComponent } from './Components/get-remainder/get-remainder.component';
 import { GetTrashComponent } from './Components/get-trash/get-trash.component';
+import { IconComponent } from './Components/icon/icon.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { GetTrashComponent } from './Components/get-trash/get-trash.component';
     GetnotecomponentComponent,
     GetArchiveComponent,
     GetRemainderComponent,
-    GetTrashComponent
+    GetTrashComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
