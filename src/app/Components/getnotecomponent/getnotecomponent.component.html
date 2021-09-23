@@ -15,13 +15,13 @@
           {{ notes["notes"] }}
         </div>
         <div class="over-con">
-          <i
+          <i style="cursor: pointer;"
             class="material-icons-outlined i-pin"
             *ngIf="!notes['is_Pin']"
             (click)="$event.stopPropagation();pin(notes)"
             >push_pin</i
           >
-          <i
+          <i style="cursor: pointer;"
             class="material-icons i-pin"
             *ngIf="notes['is_Pin']"
             (click)="$event.stopPropagation();pinned=!pinned;pin(notes)"
@@ -221,7 +221,7 @@
               class="material-icons-outlined"
               [matTooltip]="notes['is_Archive'] ? 'Unarchive' : 'Archive'"
               (click)="
-                isarchive = !isarchive;
+                archive(notes);
                 pinned = false;
                 $event.stopPropagation()
               "
@@ -270,13 +270,13 @@
           {{ notes["notes"] }}
         </div>
         <div class="over-con">
-          <i
+          <i style="cursor: pointer;"
             class="material-icons-outlined i-pin"
             *ngIf="!notes['is_Pin']"
             (click)="$event.stopPropagation();pin(notes)"
             >push_pin</i
           >
-          <i
+          <i style="cursor: pointer;"
             class="material-icons i-pin"
             *ngIf="notes['is_Pin']"
             (click)="$event.stopPropagation();pinned=!pinned;pin(notes)"
@@ -474,9 +474,9 @@
             >
             <i
               class="material-icons-outlined"
-              [matTooltip]="isarchive ? 'Unarchive' : 'Archive'"
+              [matTooltip]="notes['is_Archive'] ? 'Unarchive' : 'Archive'"
               (click)="
-                isarchive = !isarchive;
+                archive(notes);
                 pinned = false;
                 $event.stopPropagation()
               "

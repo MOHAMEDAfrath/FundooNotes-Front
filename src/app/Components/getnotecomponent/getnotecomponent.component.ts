@@ -155,4 +155,15 @@ pin(notes:any){
       this.getUserNotes();
   })
 }
+archive(notes:any){
+  console.log(notes['is_Archive'],this.isarchive);
+  this.isarchive = notes['is_Pin'];
+  notes['is_Archive'] = !this.isarchive;
+  this.noteservice.archive(notes.notesId).
+  subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000})
+      this.pin_dis = false;
+      this.getUserNotes();
+  })
+}
 }

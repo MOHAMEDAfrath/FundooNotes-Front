@@ -65,5 +65,10 @@ export class NotesService {
     this.getToken();
     return this.httpService.put(`${environment.baseUrl}/api/Pin`,params,true,this.header);
   }
+  archive(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/archive`,params,true,this.header);
+  }
 }
 
