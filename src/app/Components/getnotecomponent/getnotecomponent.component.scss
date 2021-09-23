@@ -121,8 +121,9 @@
     display:flex;
     flex-wrap: wrap;
     padding: 0px 80px !important;
-    padding-bottom: 30px;
+    padding-bottom: 40px !important;
      justify-items: center; 
+     align-items: flex-start;
   }
   ::ng-deep .remainder-menu .mat-menu-content{
     max-width: 300px !important;

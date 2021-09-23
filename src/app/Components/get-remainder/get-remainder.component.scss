@@ -3,10 +3,10 @@
     margin: 10px;
     height: max-content;
     min-height: 100px;
-    max-height: 230px;
+    max-height: 300px;
     box-shadow: none;
     border: 1.5px solid #a8aaad79;
-    border-radius: 10px;
+    border-radius: 10px !important;
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
@@ -274,5 +274,6 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0px 80px;
-    align-items: center;
+    padding-bottom: 30px;
+    align-items: flex-start;
   }

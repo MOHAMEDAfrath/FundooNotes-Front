@@ -113,5 +113,10 @@ export class NotesService {
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/addCollaborator`,params,true,this.header);
   }
+  emptyTrash(data:any){
+    let params = new HttpParams().set('userId',data);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/Trash/EmptyTrash`,params,true,this.header);
+  }
 }
 

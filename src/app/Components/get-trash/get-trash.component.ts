@@ -36,4 +36,12 @@ export class GetTrashComponent implements OnInit {
       this.ngOnInit();
     })
   }
+  emptyTrash(){
+    var user = JSON.parse(localStorage.getItem('FundooUser')!);
+    this.noteservice.emptyTrash(user.userId).
+    subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000});
+    })
+  }
+
 }
