@@ -60,6 +60,10 @@ export class NotesService {
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/GetTrashNotes`,params,true,this.header);
   }
-
+  pin(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/Pin`,params,true,this.header);
+  }
 }
 

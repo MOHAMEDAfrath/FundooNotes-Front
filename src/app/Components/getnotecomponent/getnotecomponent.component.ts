@@ -3,12 +3,11 @@ import { NativeDateAdapter, DateAdapter,
   MAT_DATE_FORMATS } from '@angular/material/core';
  import { formatDate } from '@angular/common';
  import { DatePipe } from '@angular/common';
- import { FormGroup } from '@angular/forms';
 import { DialogComponent } from '../dialog/dialog/dialog.component';
 import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { MatDialog } from '@angular/material/dialog';
- 
+ import { MatSnackBar } from '@angular/material/snack-bar';
  export const PICK_FORMATS = {
    parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
    display: {
@@ -39,26 +38,11 @@ import { MatDialog } from '@angular/material/dialog';
 ]
 })
 export class GetnotecomponentComponent implements OnInit {
-
   pin_dis = false; 
   Name = '';
   Email = '';
-  isGrid = true;
-  isSearch = false;
-  isOption = 1;
-  isOptions:string='';
-  searchInp = "";
-  expand =true;
-  toggle = false;
-  clickSearch = true;
-  searchIcon = true;
-  userLabels = [];
   userNotes = [];
   userPinnedNotes = [];
-  dispNote = false;
-  DescNote: string = '';
-  TitleNote: string = '';
-  NotesForm!: FormGroup;
   dayArr = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat'];
   monthArr = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec']
   colourArr = [{colour:'white',tooltip:'White'},{colour:'#f28b82',tooltip:'Red'},{colour:'#fbbc04',tooltip:'Orange'},{colour:'#fff475',tooltip:'Yellow'},{colour:'#ccff90',tooltip:'Green'},{colour:'#a7ffeb',tooltip:'Teal'},{colour:'#cbf0f8',tooltip:'Blue'},{colour:'#aecbfa',tooltip:'Dark Blue'},{colour:'#d7aefb',tooltip:'Purple'},{colour:'#fdcfe8',tooltip:'Pink'}
@@ -73,15 +57,14 @@ export class GetnotecomponentComponent implements OnInit {
   timemenu = false;
   isarchive = false;
   timeValue = "8:00AM"
-  noteLabels =[];
   constructor(private noteservice:NotesService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private snack : MatSnackBar
     ) { }
 
   ngOnInit(): void {
     this.getFromLocalStorage();
     this.getDate();
-    this.getLabels();
     this.getUserNotes();
   }
  
@@ -90,13 +73,7 @@ export class GetnotecomponentComponent implements OnInit {
     this.Name = user.userName;
     this.Email = user.emailId;
 }
-getLabels(){
-  this.noteservice.getLabels().
-  subscribe((result:any)=>{
-      this.userLabels = result.data;
-      console.log(result)
-  })
-}
+
 getUserNotes(){
   this.noteservice.getUserNotes().subscribe((result:any)=>{
     console.log(result.data);
@@ -166,5 +143,16 @@ getDateTime(data:any,time:any){
  }    
  //console.log(today);
  this.addRemainder = data+", "+time
+}
+pin(notes:any){
+  console.log(notes['is_Pin'],this.pinned);
+  this.pinned = notes['is_Pin'];
+  notes['is_Pin'] = !this.pinned;
+  this.noteservice.pin(notes.notesId).
+  subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000})
+      this.pin_dis = false;
+      this.getUserNotes();
+  })
 }
 }

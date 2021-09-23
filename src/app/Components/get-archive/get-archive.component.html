@@ -214,7 +214,7 @@ class="card-disp"
     >
     <i
       class="material-icons-outlined"
-      [matTooltip]="isarchive ? 'Unarchive' : 'Archive'"
+      [matTooltip]="notes['is_Archive'] ? 'Unarchive' : 'Archive'"
       (click)="
         isarchive = !isarchive;
         pinned = false;
@@ -232,14 +232,12 @@ class="card-disp"
     <mat-menu #menu="matMenu" class="i-option">
       <button
         mat-menu-item
-        *ngIf="TitleNote.length > 0 || DescNote.length > 0"
       >
         Delete Label
       </button>
       <button mat-menu-item>Add Label</button>
       <button
         mat-menu-item
-        *ngIf="TitleNote.length > 0 || DescNote.length > 0"
       >
         Make a copy
       </button>

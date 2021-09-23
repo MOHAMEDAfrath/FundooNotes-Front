@@ -18,13 +18,13 @@
           <i
             class="material-icons-outlined i-pin"
             *ngIf="!notes['is_Pin']"
-            (click)="$event.stopPropagation()"
+            (click)="$event.stopPropagation();pin(notes)"
             >push_pin</i
           >
           <i
             class="material-icons i-pin"
             *ngIf="notes['is_Pin']"
-            (click)="$event.stopPropagation()"
+            (click)="$event.stopPropagation();pinned=!pinned;pin(notes)"
             >push_pin</i
           >
           <div class="i-div">
@@ -219,7 +219,7 @@
             >
             <i
               class="material-icons-outlined"
-              [matTooltip]="isarchive ? 'Unarchive' : 'Archive'"
+              [matTooltip]="notes['is_Archive'] ? 'Unarchive' : 'Archive'"
               (click)="
                 isarchive = !isarchive;
                 pinned = false;
@@ -237,14 +237,12 @@
             <mat-menu #menu="matMenu" class="i-option">
               <button
                 mat-menu-item
-                *ngIf="TitleNote.length > 0 || DescNote.length > 0"
               >
                 Delete Label
               </button>
               <button mat-menu-item>Add Label</button>
               <button
                 mat-menu-item
-                *ngIf="TitleNote.length > 0 || DescNote.length > 0"
               >
                 Make a copy
               </button>
@@ -275,13 +273,13 @@
           <i
             class="material-icons-outlined i-pin"
             *ngIf="!notes['is_Pin']"
-            (click)="$event.stopPropagation()"
+            (click)="$event.stopPropagation();pin(notes)"
             >push_pin</i
           >
           <i
             class="material-icons i-pin"
             *ngIf="notes['is_Pin']"
-            (click)="$event.stopPropagation()"
+            (click)="$event.stopPropagation();pinned=!pinned;pin(notes)"
             >push_pin</i
           >
           <div class="i-div">
@@ -494,14 +492,13 @@
             <mat-menu #menu="matMenu" class="i-option">
               <button
                 mat-menu-item
-                *ngIf="TitleNote.length > 0 || DescNote.length > 0"
+                
               >
                 Delete Label
               </button>
               <button mat-menu-item>Add Label</button>
               <button
                 mat-menu-item
-                *ngIf="TitleNote.length > 0 || DescNote.length > 0"
               >
                 Make a copy
               </button>
