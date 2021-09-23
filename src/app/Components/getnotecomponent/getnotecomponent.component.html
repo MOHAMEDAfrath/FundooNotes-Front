@@ -199,16 +199,15 @@
               class="color-menu"
               yPosition="above"
             >
-              <div
-                class="a-color"
-                *ngFor="let color of colourArr"
-                matTooltip="{{ color.tooltip }}"
-                (click)="setColor = color.colour"
-                [ngStyle]="{ 'background-color': color.colour }"
-              >
-                <i class="material-icons" *ngIf="setColor == color.colour"
-                  >check</i
-                >
+            <div
+            class="a-color"
+            *ngFor="let color of colourArr"
+            matTooltip="{{ color.tooltip }}"
+            [ngStyle]="{ 'background-color': color.colour }"
+            (click)="setColour(notes,color.colour )"
+          >
+            <i class="material-icons" *ngIf="color.colour == notes['color']" >check</i
+            >
               </div>
             </mat-menu>
             <i
@@ -458,11 +457,10 @@
                 class="a-color"
                 *ngFor="let color of colourArr"
                 matTooltip="{{ color.tooltip }}"
-                (click)="setColor = color.colour"
                 [ngStyle]="{ 'background-color': color.colour }"
+                (click)="setColour(notes,color.colour )"
               >
-                <i class="material-icons" *ngIf="setColor == color.colour"
-                  >check</i
+                <i class="material-icons" *ngIf="color.colour == notes['color']" >check</i
                 >
               </div>
             </mat-menu>

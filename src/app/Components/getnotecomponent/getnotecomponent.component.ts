@@ -166,4 +166,15 @@ archive(notes:any){
       this.getUserNotes();
   })
 }
+setColour(note:any,color:any){
+    console.log(note['color']);
+    note['color'] = color;
+    console.log(note['color'])
+    this.noteservice.updatecolor(note.notesId,color)
+    .subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000})
+    })
+    this.getUserNotes();
+}
+
 }

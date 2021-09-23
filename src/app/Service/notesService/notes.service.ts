@@ -70,5 +70,10 @@ export class NotesService {
     this.getToken();
     return this.httpService.put(`${environment.baseUrl}/api/archive`,params,true,this.header);
   }
+  updatecolor(data:any,color:any){
+    let params = new HttpParams().set('noteId',data).set('color',color)
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/UpdateColor`,params,true,this.header);
+  }
 }
 

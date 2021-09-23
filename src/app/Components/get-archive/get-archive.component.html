@@ -10,18 +10,18 @@ class="card-disp"
   {{ notes["notes"] }}
 </div>
 <div class="over-con">
-  <i
-    class="material-icons-outlined i-pin"
-    *ngIf="!notes['is_Pin']"
-    (click)="$event.stopPropagation()"
-    >push_pin</i
-  >
-  <i
-    class="material-icons i-pin"
-    *ngIf="notes['is_Pin']"
-    (click)="$event.stopPropagation()"
-    >push_pin</i
-  >
+  <i style="cursor: pointer;"
+            class="material-icons-outlined i-pin"
+            *ngIf="!notes['is_Pin']"
+            (click)="$event.stopPropagation();pin(notes)"
+            >push_pin</i
+          >
+          <i style="cursor: pointer;"
+            class="material-icons i-pin"
+            *ngIf="notes['is_Pin']"
+            (click)="$event.stopPropagation();pinned=!pinned;pin(notes)"
+            >push_pin</i
+          >
   <div class="i-div">
     <i
       class="material-icons-outlined"
@@ -194,16 +194,15 @@ class="card-disp"
       class="color-menu"
       yPosition="above"
     >
-      <div
-        class="a-color"
-        *ngFor="let color of colourArr"
-        matTooltip="{{ color.tooltip }}"
-        (click)="setColor = color.colour"
-        [ngStyle]="{ 'background-color': color.colour }"
-      >
-        <i class="material-icons" *ngIf="setColor == color.colour"
-          >check</i
-        >
+    <div
+    class="a-color"
+    *ngFor="let color of colourArr"
+    matTooltip="{{ color.tooltip }}"
+    [ngStyle]="{ 'background-color': color.colour }"
+    (click)="setColour(notes,color.colour )"
+  >
+    <i class="material-icons" *ngIf="color.colour == notes['color']" >check</i
+    >
       </div>
     </mat-menu>
     <i
@@ -213,15 +212,15 @@ class="card-disp"
       >image</i
     >
     <i
-      class="material-icons-outlined"
-      [matTooltip]="notes['is_Archive'] ? 'Unarchive' : 'Archive'"
-      (click)="
-        isarchive = !isarchive;
-        pinned = false;
-        $event.stopPropagation()
-      "
-      >archive</i
-    >
+              class="material-icons-outlined"
+              [matTooltip]="notes['is_Archive'] ? 'Unarchive' : 'Archive'"
+              (click)="
+                archive(notes);
+                pinned = false;
+                $event.stopPropagation()
+              "
+              >archive</i
+            >
     <i
       class="material-icons-outlined more"
       matTooltip="More"

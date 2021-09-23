@@ -8,6 +8,7 @@ import { DialogComponent } from '../dialog/dialog/dialog.component';
 import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
  
  export const PICK_FORMATS = {
    parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -43,8 +44,6 @@ export class GetArchiveComponent implements OnInit {
   Name = '';
   Email = '';
   dispNote = false;
-  DescNote: string = '';
-  TitleNote: string = '';
   dayArr = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat'];
   monthArr = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec']
   colourArr = [{colour:'white',tooltip:'White'},{colour:'#f28b82',tooltip:'Red'},{colour:'#fbbc04',tooltip:'Orange'},{colour:'#fff475',tooltip:'Yellow'},{colour:'#ccff90',tooltip:'Green'},{colour:'#a7ffeb',tooltip:'Teal'},{colour:'#cbf0f8',tooltip:'Blue'},{colour:'#aecbfa',tooltip:'Dark Blue'},{colour:'#d7aefb',tooltip:'Purple'},{colour:'#fdcfe8',tooltip:'Pink'}
@@ -61,7 +60,8 @@ export class GetArchiveComponent implements OnInit {
   timeValue = "8:00AM"
   archiveNotes=[];
   constructor(private noteservice:NotesService,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog,
+    private snack:MatSnackBar) { }
 
   ngOnInit(): void {
     this.getFromLocalStorage();
@@ -133,4 +133,36 @@ getDate(){
    this.archiveNotes = result.data;
  })
  }
+ pin(notes:any){
+  console.log(notes['is_Pin'],this.pinned);
+  this.pinned = notes['is_Pin'];
+  notes['is_Pin'] = !this.pinned;
+  this.noteservice.pin(notes.notesId).
+  subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000})
+      this.getArchive();
+  })
+}
+archive(notes:any){
+  console.log(notes['is_Archive'],this.isarchive);
+  this.isarchive = notes['is_Pin'];
+  notes['is_Archive'] = !this.isarchive;
+  this.noteservice.archive(notes.notesId).
+  subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000})
+      this.getArchive();
+  })
+}
+setColour(note:any,color:any){
+    console.log(note['color']);
+    note['color'] = color;
+    console.log(note['color'])
+    this.noteservice.updatecolor(note.notesId,color)
+    .subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000})
+      this.getArchive();
+    })
+    
+}
+
 }
