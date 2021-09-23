@@ -147,12 +147,12 @@ getDateTime(data:any,time:any){
 pin(notes:any){
   console.log(notes['is_Pin'],this.pinned);
   this.pinned = notes['is_Pin'];
-  notes['is_Pin'] = !this.pinned;
+   notes['is_Pin'] = !this.pinned;
   this.noteservice.pin(notes.notesId).
   subscribe((result:any)=>{
       this.snack.open(result.message,'',{duration:3000})
       this.pin_dis = false;
-      this.getUserNotes();
+      this.ngOnInit();
   })
 }
 archive(notes:any){
@@ -163,7 +163,7 @@ archive(notes:any){
   subscribe((result:any)=>{
       this.snack.open(result.message,'',{duration:3000})
       this.pin_dis = false;
-      this.getUserNotes();
+      this.ngOnInit();
   })
 }
 setColour(note:any,color:any){
@@ -173,8 +173,17 @@ setColour(note:any,color:any){
     this.noteservice.updatecolor(note.notesId,color)
     .subscribe((result:any)=>{
       this.snack.open(result.message,'',{duration:3000})
+      this.ngOnInit();
+
     })
-    this.getUserNotes();
+  }
+    
+addTrash(note:any){
+  this.noteservice.addTrash(note['notesId'])
+  .subscribe((result:any)=>{
+    this.snack.open(result.message,'',{duration:3000})
+    this.ngOnInit()
+  })
 }
 
 }

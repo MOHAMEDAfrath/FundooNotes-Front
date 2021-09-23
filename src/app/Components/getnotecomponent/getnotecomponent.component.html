@@ -236,8 +236,9 @@
             <mat-menu #menu="matMenu" class="i-option">
               <button
                 mat-menu-item
+                (click)=addTrash(notes)
               >
-                Delete Label
+                Delete Note
               </button>
               <button mat-menu-item>Add Label</button>
               <button
@@ -490,9 +491,9 @@
             <mat-menu #menu="matMenu" class="i-option">
               <button
                 mat-menu-item
-                
+                (click)=addTrash(notes)
               >
-                Delete Label
+                Delete Note
               </button>
               <button mat-menu-item>Add Label</button>
               <button

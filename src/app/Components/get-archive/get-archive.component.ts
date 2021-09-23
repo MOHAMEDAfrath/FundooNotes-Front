@@ -164,5 +164,9 @@ setColour(note:any,color:any){
     })
     
 }
-
+addTrash(note:any){
+  console.log(note['is_Trash']);
+  note['is_Trash'] = true;
+  console.log(note['is_Trash'])
+}
 }

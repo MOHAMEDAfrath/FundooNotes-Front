@@ -14,8 +14,8 @@
 
        </div>
       <div class="i-div">
-        <i class="material-icons">delete_forever</i>
-        <i class="material-icons">restore_from_trash</i>
+        <i class="material-icons" matTooltip="Delete" (click)="deleteFromTrash(trash)">delete_forever</i>
+        <i class="material-icons" matTooltip="Restore from trash" (click)="restore(trash)">restore_from_trash</i>
         </div>
     </div>
     </mat-card>

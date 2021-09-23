@@ -75,5 +75,20 @@ export class NotesService {
     this.getToken();
     return this.httpService.put(`${environment.baseUrl}/api/UpdateColor`,params,true,this.header);
   }
+  addTrash(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/Trash`,params,true,this.header);
+  }
+  restore(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/Trash/Restore`,params,true,this.header);
+  }
+  deleteFromTrash(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/Trash/Delete`,params,true,this.header);
+  }
 }
 

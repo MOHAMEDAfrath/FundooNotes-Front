@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { NotesService } from 'src/app/Service/notesService/notes.service';
 })
 export class GetTrashComponent implements OnInit {
 
-  constructor(private noteservice:NotesService) { }
+  constructor(private noteservice:NotesService,
+    private snack : MatSnackBar) { }
   trashNotes=[];
   ngOnInit(): void {
     this.getTrash()
@@ -18,6 +20,20 @@ export class GetTrashComponent implements OnInit {
     subscribe((result:any)=>{
       this.trashNotes = result.data;
       console.log(result.data);
+    })
+  }
+  restore(data:any){
+    this.noteservice.restore(data['notesId']).
+    subscribe((result:any)=>{
+        this.snack.open(result.message,'',{duration:3000});
+        this.ngOnInit();
+    })
+  }
+  deleteFromTrash(data:any){
+    this.noteservice.deleteFromTrash(data['notesId'])
+    .subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000});
+      this.ngOnInit();
     })
   }
 }
