@@ -90,5 +90,28 @@ export class NotesService {
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/Trash/Delete`,params,true,this.header);
   }
+  setRemainder(data:any,date:any){
+    let params = new HttpParams().set('notesId',data).set('remainder',date).set('userId',this.user.userId);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/Remainder`,params,true,this.header);
+  }
+  deleteReaminder(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/RemainderDelete`,params,true,this.header);
+  }
+  getCollaborators(data:any){
+    let params = new HttpParams().set('noteId',data);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/getCollaborator`,params,true,this.header);
+  }
+  addCollab(data:any,colab:any){
+    let params = {
+      notesId: data,
+      colEmail:colab.email
+    }
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/addCollaborator`,params,true,this.header);
+  }
 }
 

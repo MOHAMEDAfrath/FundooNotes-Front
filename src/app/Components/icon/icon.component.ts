@@ -4,11 +4,40 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { DialogComponent } from '../dialog/dialog/dialog.component';
 import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
+import { NativeDateAdapter, DateAdapter,
+  MAT_DATE_FORMATS } from '@angular/material/core';
+ import { formatDate } from '@angular/common';
+ import { DatePipe } from '@angular/common';
+ 
+ export const PICK_FORMATS = {
+   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
+   display: {
+       dateInput: 'input',
+       monthYearLabel: {year: 'numeric', month: 'short'},
+       dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
+       monthYearA11yLabel: {year: 'numeric', month: 'long'}
+   }
+ };
+ 
+ class PickDateAdapter extends NativeDateAdapter {
+   format(date: Date, displayFormat: Object): string {
+       if (displayFormat === 'input') {
+           return formatDate(date,'MMM dd,yyyy',this.locale);;
+       } else {
+           return date.toDateString();
+       }
+   }
+ }
 
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss']
+  styleUrls: ['./icon.component.scss'],
+  providers: [
+    {provide: DateAdapter, useClass: PickDateAdapter},
+    {provide: MAT_DATE_FORMATS, useValue: PICK_FORMATS},
+    DatePipe
+]
 })
 export class IconComponent implements OnInit {
 
@@ -32,7 +61,7 @@ export class IconComponent implements OnInit {
   usernotes=[];
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
-    private snack:MatSnackBar) { }
+    private snack:MatSnackBar, public datepipe: DatePipe) { }
   @Input() notes!:any;
   ngOnInit(): void {
     this.getFromLocalStorage();
@@ -47,21 +76,40 @@ export class IconComponent implements OnInit {
     let date = new Date().getDay();
     this.remainder = this.dayArr[date]+", 8:00AM";
    }
-   setRemainder(){
+   setRemainder(notes:any){
     let date = new Date();
      date.setDate(date.getDate()+7);
     this.addRemainder= this.monthArr[date.getMonth()]+" "+date.getDate()+", 8:00AM";
     this.startDate = date;
     console.log(this.addRemainder)
+    this.noteservice.setRemainder(notes['notesId'],this.addRemainder)
+    .subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000});
+    })
    }
-   set(){
+   deleteRemainder(note:any){
+      this.noteservice.deleteReaminder(note['notesId']).
+      subscribe((result:any)=>{
+        this.snack.open(result.message,'',{duration:3000});
+      })
+   }
+   set(note:any){
     this.startDate = new Date();
+    console.log(this.startDate)
+    this.noteservice.setRemainder(note['notesId'],"Today, 8:00AM")
+    .subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000});
+    })
    }
-   setTom(){
+   setTom(notes:any){
     this.startDate = new Date();
-    this.startDate.setDate(this.startDate.getDate()+1);    
+    this.startDate.setDate(this.startDate.getDate()+1); 
+    this.noteservice.setRemainder(notes['notesId'],"Tommorrow, 8:00AM")
+    .subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000});
+    })
    }
-   getDateTime(data:any,time:any){
+   getDateTime(notes:any,data:any,time:any){
     console.log(data)
     console.log(time)
     var date = new Date();
@@ -78,6 +126,10 @@ export class IconComponent implements OnInit {
     }    
     //console.log(today);
     this.addRemainder = data+", "+time
+    this.noteservice.setRemainder(notes['notesId'],this.addRemainder)
+    .subscribe((result:any)=>{
+      this.snack.open(result.message,'',{duration:3000});
+    })
    }
   pin(notes:any){
     console.log(notes['is_Pin'],this.pinned);
@@ -112,11 +164,33 @@ export class IconComponent implements OnInit {
         console.log(result);
        })
     }
-    openDialog(){
+    openDialog(notes:any){
+      this.noteservice.getCollaborators(notes['notesId']).
+      subscribe((result:any)=>{
+        console.log(result)
+        this.collaboratorArr = result.data;
+        console.log(this.collaboratorArr)
       let dialogref = this.dialog.open(DialogComponent,{data:{name : this.Name,email:this.Email, collab: this.collaboratorArr}});
       dialogref.afterClosed().subscribe((result)=>{
         console.log(result);
         this.collaboratorArr = result;
+        this.addColab(notes['notesId'],this.collaboratorArr);
        })
+      })
+      
+    }
+    addColab(note:any,colab:any){
+      for(let col of colab){
+      this.noteservice.addCollab(note,col)
+      .subscribe((result:any)=>{
+        this.snack.open(result.message,'',{duration:3000});
+      })
+    }
+    }
+    addTrash(note:any){
+      this.noteservice.addTrash(note['notesId']).
+      subscribe((result:any)=>{
+        this.snack.open(result.message,'',{duration:3000});
+      })
     }
 }

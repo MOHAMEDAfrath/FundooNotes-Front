@@ -2,7 +2,7 @@
     <mat-card
     class="card-disp"
     *ngFor="let trash of trashNotes"
-      >
+     [ngStyle]="{'background-color':trash['color']}" >
     <div class="d-tit">
       {{trash['title']}}
     </div>
@@ -14,7 +14,7 @@
 
        </div>
       <div style="padding: 5px;">
-        <i class="material-icons" matTooltip="Delete" (click)="deleteFromTrash(trash)" style="cursor: pointer;">delete_forever</i>
+        <i class="material-icons" matTooltip="Delete" (click)="deleteFromTrash(trash)" style="cursor: pointer; margin-right: 10px;">delete_forever</i>
         <i class="material-icons" matTooltip="Restore from trash" (click)="restore(trash)" style="cursor: pointer;">restore_from_trash</i>
         </div>
     </div>

@@ -19,7 +19,7 @@
         <i class="material-icons-outlined">access_time</i>
         <p class="chip">{{ notes["remainder"] }}</p>
         <button class="chip-but" matTooltip="Delete Remainder">
-          <i class="material-icons-outlined">close</i>
+          <i class="material-icons-outlined" (click)="deleteRemainder(notes);$event.stopPropagation()">close</i>
         </button>
       </div>
     </div>
@@ -27,7 +27,7 @@
       <i
         class="material-icons-outlined"
         matTooltip="Remind me"
-        [matMenuTriggerFor]="addRemainder.length == 0 ? Remainder : Remainder_t"
+        [matMenuTriggerFor]="notes['remainder'] == 0 ? Remainder : Remainder_t"
         (click)="$event.stopPropagation()"
         >notifications_none</i
       >
@@ -36,7 +36,7 @@
         <button
           mat-menu-item
           class="remainder-but"
-          (click)="addRemainder = 'Today, 8:00PM'; set()"
+          (click)="addRemainder = 'Today, 8:00PM'; set(notes)"
         >
           <p>Later today</p>
           <p>8:00PM</p>
@@ -44,12 +44,12 @@
         <button
           mat-menu-item
           class="remainder-but"
-          (click)="addRemainder = 'Tomorrow, 8:00AM'; setTom()"
+          (click)="addRemainder = 'Tomorrow, 8:00AM'; setTom(notes)"
         >
           <p>Tomorrow</p>
           <p>8:00AM</p>
         </button>
-        <button mat-menu-item class="remainder-but" (click)="setRemainder()">
+        <button mat-menu-item class="remainder-but" (click)="setRemainder(notes)">
           <p>Next Week</p>
           <p>{{ remainder }}</p>
         </button>
@@ -150,7 +150,7 @@
         <div class="time-but">
           <button
             class="save"
-            (click)="getDateTime(date.value, time.value)"
+            (click)="getDateTime(notes,date.value, time.value)"
             mat-button
             *ngIf="!timemenu"
           >
@@ -161,7 +161,7 @@
       <i
         class="material-icons-outlined"
         matTooltip="Collaborator"
-        (click)="openDialog(); $event.stopPropagation()"
+        (click)="openDialog(notes); $event.stopPropagation()"
         >person_add_alt_1</i
       >
       <i
@@ -206,8 +206,9 @@
     <mat-menu #menu="matMenu" class="i-option">
       <button
         mat-menu-item
+        (click)="addTrash(notes)"
       >
-        Delete Label
+        Delete Notes
       </button>
       <button mat-menu-item>Add Label</button>
       <button
