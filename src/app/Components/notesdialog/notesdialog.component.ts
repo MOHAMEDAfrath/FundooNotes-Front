@@ -3,11 +3,13 @@ import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { NativeDateAdapter, DateAdapter,
   MAT_DATE_FORMATS } from '@angular/material/core';
-  import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+  import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
  import { formatDate } from '@angular/common';
  import { DatePipe } from '@angular/common';
  import { DialogComponent } from '../dialog/dialog/dialog.component';
  import { MatDialog } from '@angular/material/dialog';
+import { NotesService } from 'src/app/Service/notesService/notes.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
  export const PICK_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
   display: {
@@ -63,13 +65,18 @@ export class NotesdialogComponent implements OnInit {
   isarchive = false;
   timeValue = "8:00AM"
   noteLabels =[];
+  imageUrl = "";
   constructor( public dialog : MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data:any) { }
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private dialogRef: MatDialogRef<NotesdialogComponent>,
+    private noteservice : NotesService,
+    private snack:MatSnackBar) { }
 
   ngOnInit(): void {
     this.NotesForm = new FormGroup({
       title: new FormControl(''),
       Desc: new FormControl(''),
+      
     });
     this.setValues();
     this.getDate()
@@ -128,15 +135,26 @@ export class NotesdialogComponent implements OnInit {
    this.addRemainder = data+", "+time
  }
  setValues(){
+   console.log(this.data);
    this.TitleNote = this.data.notes.title
    this.DescNote = this.data.notes.notes
    this.startDate = this.data.notes.remainder
    this.setColor = this.data.notes.color
    this.pinned = this.data.notes.is_Pin
-   this.isarchive = this.data.is_Archive
-   console.log(this.data.notes)
-   
+   this.isarchive = this.data.notes.is_Archive
+   this.addRemainder = this.data.notes.remainder
+   this.imageUrl = this.data.notes.image;
  }
-  
+ 
+   update(){
+    //this.dialogRef.close(this.data.collab);
+      if (this.NotesForm.value.title != '' || this.NotesForm.value.Desc != '') {
+        this.noteservice
+          .updateNotes(this.data.notes.notesId,this.NotesForm.value,this.pinned,this.isarchive,this.setColor,this.addRemainder,this.imageUrl)
+          .subscribe((result: any) => {
+              this.snack.open(result.message, '', { duration: 3000 });
+          });
+      }
+  }
 }
 

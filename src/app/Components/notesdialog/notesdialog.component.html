@@ -2,6 +2,7 @@
 class="n-mat"
 [ngStyle]="{ 'background-color': setColor }"
 >
+<img [src]="imageUrl" alt="" *ngIf="imageUrl!=null && imageUrl != ''" class= "img"  style="width: 100%;">
 <form class="example-form" [formGroup]="NotesForm">
   <div class="t-div t-main">
     <input
@@ -200,6 +201,7 @@ class="n-mat"
       </div>
       <button
         mat-button
+        (click)="update()"
         >
         Close
       </button>

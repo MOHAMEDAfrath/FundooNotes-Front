@@ -109,6 +109,7 @@ export class NotesService {
     let params = {
       NotesId: data,
       ColEmail:colab
+      
     }
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/addCollaborator`,params,true,this.header);
@@ -122,6 +123,20 @@ export class NotesService {
     let params = new HttpParams().set('notesId',data).set('image',form).set('userId',this.user.userId);
     this.getToken();
     return this.httpService.put(`${environment.baseUrl}/api/addImage?notesId=${data}&userId=${this.user.userId}`,form,true,this.header);
+  }
+  updateNotes(id:any,data:any,pin:any,archive:any,color:any,remainder:any,image:any){
+    let params = {
+      NotesId:id,
+      Title: data.title,
+      Notes: data.Desc,
+      Remainder:remainder,
+      Color:color,
+      Is_Archive:archive,
+      Is_Pin:pin,
+      image:image
+    }
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/UpdateNote`,params,true,this.header);
   }
 }
 
