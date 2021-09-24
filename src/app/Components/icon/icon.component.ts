@@ -59,6 +59,7 @@ export class IconComponent implements OnInit {
   isarchive = false;
   timeValue = "8:00AM"
   usernotes=[];
+  temp:any;
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
     private snack:MatSnackBar, public datepipe: DatePipe) { }
@@ -169,7 +170,9 @@ export class IconComponent implements OnInit {
       subscribe((result:any)=>{
         console.log(result)
         this.collaboratorArr = result.data;
-        console.log(this.collaboratorArr)
+        if(this.collaboratorArr ==null){
+          this.collaboratorArr = [];
+        }
       let dialogref = this.dialog.open(DialogComponent,{data:{name : this.Name,email:this.Email, collab: this.collaboratorArr}});
       dialogref.afterClosed().subscribe((result)=>{
         console.log(result);
@@ -181,6 +184,7 @@ export class IconComponent implements OnInit {
     }
     addColab(note:any,colab:any){
       for(let col of colab){
+        console.log(col);
       this.noteservice.addCollab(note,col)
       .subscribe((result:any)=>{
         this.snack.open(result.message,'',{duration:3000});
@@ -193,4 +197,8 @@ export class IconComponent implements OnInit {
         this.snack.open(result.message,'',{duration:3000});
       })
     }
+    addImages(data:any){
+      console.log(data); 
+    }
 }
+

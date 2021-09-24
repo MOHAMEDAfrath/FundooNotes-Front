@@ -11,7 +11,29 @@
     *ngIf="dispNote"
     [ngStyle]="{ 'background-color': setColor }"
   >
-    <form class="example-form" [formGroup]="NotesForm">
+  <div style="position: absolute;top: 10px;left: 10px;cursor: pointer;" *ngIf="imageLink.length>0">
+    <i class="material-icons" (click)="imageLink=''">delete</i>
+  </div>
+  <div class="pin-class">
+    <div>
+    <i
+      matTooltip="Pin the note"
+      class="material-icons-outlined i-pin"
+      (click)="pinned=!pinned;isarchive=false"
+      *ngIf="!pinned"
+      >push_pin</i
+    >
+    <i
+      matTooltip="Unpin the note"
+      class="material-icons i-pin"
+      (click)="pinned=!pinned;isarchive=false"
+      *ngIf="pinned"
+      >push_pin</i
+    >
+    </div>
+    </div>
+   <img [src]="imageLink" alt="" *ngIf="imageLink.length>0" class= "img"  style="width: 100%;">
+    <form class="example-form" [formGroup]="NotesForm">  
       <div class="t-div t-main">
         <input
           type="text"
@@ -23,20 +45,6 @@
           [ngModel]="TitleNote"
           [ngStyle]="{ 'background-color': setColor }"
         />
-        <i
-          matTooltip="Pin the note"
-          class="material-icons-outlined i-pin"
-          (click)="pinned=!pinned;isarchive=false"
-          *ngIf="!pinned"
-          >push_pin</i
-        >
-        <i
-          matTooltip="Unpin the note"
-          class="material-icons i-pin"
-          (click)="pinned=!pinned;isarchive=false"
-          *ngIf="pinned"
-          >push_pin</i
-        >
       </div>
       <div class="n-div">
         <textarea
@@ -74,7 +82,7 @@
         </button>
       </div>
       <div  *ngFor="let person of collaboratorArr">
-        <i style="color: blue;" class="material-icons" [matTooltip]="'Shared with '+person['name']">person_pin</i>
+        <i style="color: blue;" class="material-icons" [matTooltip]="'Shared with '+person">person_pin</i>
       </div>
       </div>
     </form>
@@ -186,7 +194,10 @@
             <i class="material-icons" *ngIf="setColor == color.colour">check</i>
           </div>
         </mat-menu>
-        <i class="material-icons-outlined" matTooltip="Add image">image</i>
+        <label for="image">
+        <input type="file" name="image" class="upload" accept="image/*" id="image" style="display:none;" (change)="setImage($event)" />
+        <i class="material-icons-outlined" matTooltip="Add image" >image</i>
+      </label>
         <i class="material-icons-outlined" [matTooltip]="isarchive?'Unarchive':'Archive'"(click)="isarchive=!isarchive;pinned=false">archive</i>
         <i
           class="material-icons-outlined more"

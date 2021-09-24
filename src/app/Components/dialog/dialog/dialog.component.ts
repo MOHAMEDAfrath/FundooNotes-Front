@@ -25,7 +25,7 @@ export class DialogComponent implements OnInit {
       if(colab!=this.user.emailId){
       this.notesservice.checkEmail(colab).
       subscribe((result:any)=>{
-        this.data.collab.push({email:colab,name:result.data});
+        this.data.collab.push(colab);
       })
     }else{
         this.snack.open('Owner Exists !','',{duration:3000});

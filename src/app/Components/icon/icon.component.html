@@ -22,6 +22,9 @@
           <i class="material-icons-outlined" (click)="deleteRemainder(notes);$event.stopPropagation()">close</i>
         </button>
       </div>
+      <div  *ngFor="let person of collaboratorArr">
+        <i style="color: blue;" class="material-icons" [matTooltip]="'Shared with '+person['name']">person_pin</i>
+      </div>
     </div>
     <div class="i-div">
       <i
@@ -184,12 +187,10 @@
           >
         </div>
       </mat-menu>
-      <i
-        class="material-icons-outlined"
-        (click)="$event.stopPropagation()"
-        matTooltip="Add image"
-        >image</i
-      >
+      <label for="temp">
+      <input type="file" id = "temp" name="temp" style="display: none;">
+      <i class="material-icons-outlined">image</i>
+      </label>
       <i
         class="material-icons-outlined"
         [matTooltip]="notes['is_Archive'] ? 'Unarchive' : 'Archive'"

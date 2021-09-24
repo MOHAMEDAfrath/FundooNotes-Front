@@ -14,6 +14,7 @@ encapsulation: ViewEncapsulation.None
 
 export class GetnotecomponentComponent implements OnInit {
   pin_dis = false; 
+  event:any;
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
     private snack : MatSnackBar

@@ -66,7 +66,9 @@ export class NoteComponent implements OnInit {
   timemenu = false;
   isarchive = false;
   timeValue = "8:00AM"
+  imageLink = "";
   noteLabels =[];
+  event:any
   constructor(
     private noteservice: NotesService,
     private snackBar: MatSnackBar,
@@ -87,10 +89,24 @@ export class NoteComponent implements OnInit {
         .CreateNote(this.NotesForm.value,this.pinned,this.isarchive,this.setColor,this.addRemainder)
         .subscribe((result: any) => {
           if (result.status == true) {
+            if(this.imageLink.length>0){
+            this.addImage(result.notesId);
+            }
             this.snackBar.open(result.message, '', { duration: 3000 });
           }
         });
     }
+  }
+  addImage(data:any){
+      var files: File=this.event.target.files.item(0);
+      console.log(this.event.target.files.item(0));
+      const form = new FormData();
+      form.append('image',files,files.name);
+      console.log(form)
+      this.noteservice.addImage(data,form).
+      subscribe((result:any)=>{
+        console.log(result);
+      })
   }
   openDialog(){
      let dialogref = this.dialog.open(DialogComponent,{data:{name : this.name,email:this.email, collab: this.collaboratorArr}});
@@ -143,5 +159,15 @@ export class NoteComponent implements OnInit {
     }    
     //console.log(today);
     this.addRemainder = data+", "+time
+  }
+  setImage(event:any){
+      if(event.target.files){
+        this.event = event;
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload =(event:any)=>{
+          this.imageLink = event.target.result;
+        }
+      }
   }
 }

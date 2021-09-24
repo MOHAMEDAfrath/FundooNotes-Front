@@ -8,6 +8,7 @@
         [ngStyle]="{ 'background-color': notes['color'] }"
         *ngIf = "notes['is_Pin']"
         >
+        <img src='{{notes["image"]}}' alt="" *ngIf="notes['image']!=null && notes['image']!=' '" style="width: 100%;">
         <div class="d-tit">
           {{ notes["title"] }}
         </div>
@@ -29,6 +30,9 @@
         [ngStyle]="{ 'background-color': notes['color'] }"
         *ngIf = "!notes['is_Pin']"
         >
+        <div>
+        <img src='{{notes["image"]}}' alt="" *ngIf="notes['image']!=null && notes['image']!=' '" style="width: 100%;">
+        </div>
         <div class="d-tit">
           {{ notes["title"] }}
         </div>

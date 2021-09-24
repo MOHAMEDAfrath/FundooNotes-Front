@@ -107,8 +107,8 @@ export class NotesService {
   }
   addCollab(data:any,colab:any){
     let params = {
-      notesId: data,
-      colEmail:colab.email
+      NotesId: data,
+      ColEmail:colab
     }
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/addCollaborator`,params,true,this.header);
@@ -117,6 +117,11 @@ export class NotesService {
     let params = new HttpParams().set('userId',data);
     this.getToken();
     return this.httpService.post(`${environment.baseUrl}/api/Trash/EmptyTrash`,params,true,this.header);
+  }
+  addImage(data:any,form:any){
+    let params = new HttpParams().set('notesId',data).set('image',form).set('userId',this.user.userId);
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/addImage?notesId=${data}&userId=${this.user.userId}`,form,true,this.header);
   }
 }
 
