@@ -86,7 +86,7 @@ box-shadow: none !important;
   ::ng-deep .ng-trigger {
       padding: 0px !important;
   }
-  ::ng-deep #mat-menu-panel-1{
+  ::ng-deep .remainder-menu .mat-menu-content{
     max-width: 300px;
     width: 300px !important;
    .r-par{
@@ -195,7 +195,7 @@ box-shadow: none !important;
     font-family: 'Roboto' sans-serif;
     font-size: 12px;
   }
-  ::ng-deep #mat-menu-panel-2 .mat-menu-content{
+  ::ng-deep .remainder-menu-2 .mat-menu-content{
     div{
       display: flex;
       align-items: center;
@@ -272,7 +272,7 @@ box-shadow: none !important;
   .but-time{
     position: relative;
   }
-  ::ng-deep #mat-menu-panel-3 .mat-menu-content{
+  ::ng-deep .color-menu .mat-menu-content{
     width: 180px;
     padding: 8px;
     display: flex;

@@ -10,6 +10,7 @@ import { NativeDateAdapter, DateAdapter,
   MAT_DATE_FORMATS } from '@angular/material/core';
  import { formatDate } from '@angular/common';
  import { DatePipe } from '@angular/common';
+import { DataserviceService } from 'src/app/Service/dataService/dataservice.service';
  
  export const PICK_FORMATS = {
    parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -73,7 +74,8 @@ export class NoteComponent implements OnInit {
     private noteservice: NotesService,
     private snackBar: MatSnackBar,
     public dialog : MatDialog,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private data: DataserviceService
   ) {}
   ngOnInit(): void {
     this.NotesForm = new FormGroup({
@@ -92,6 +94,7 @@ export class NoteComponent implements OnInit {
             if(this.imageLink.length>0){
             this.addImage(result.notesId);
             }
+            this.data.changeMessage(true);
             this.snackBar.open(result.message, '', { duration: 3000 });
           }
         });
@@ -105,6 +108,7 @@ export class NoteComponent implements OnInit {
       console.log(form)
       this.noteservice.addImage(data,form).
       subscribe((result:any)=>{
+        this.data.changeMessage(true);
         console.log(result);
       })
   }

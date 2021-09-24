@@ -4,6 +4,7 @@ import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataserviceService } from 'src/app/Service/dataService/dataservice.service';
  
  
 @Component({
@@ -16,10 +17,17 @@ export class GetArchiveComponent implements OnInit {
   archiveNotes=[];
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
-    private snack:MatSnackBar) { }
+    private snack:MatSnackBar,
+    private data:DataserviceService) { }
 
   ngOnInit(): void {
     this.getArchive();
+    this.data.currentMessage.subscribe((change)=>{
+        if(change == true){
+          this.getArchive();
+          this.data.changeMessage(false);
+        }
+    })
   }
 
  getArchive(){

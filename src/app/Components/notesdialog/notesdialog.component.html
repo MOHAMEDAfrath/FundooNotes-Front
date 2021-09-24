@@ -83,7 +83,7 @@ class="n-mat"
           "
           >notifications_none</i
         >
-        <mat-menu #Remainder="matMenu" class="r-option">
+        <mat-menu #Remainder="matMenu" class="remainder-menu">
           <p class="r-par">Remainder:</p>
           <button
             mat-menu-item
@@ -106,7 +106,7 @@ class="n-mat"
             <p>{{ remainder }}</p>
           </button>
         </mat-menu>
-        <mat-menu #Remainder_t class="r-option">
+        <mat-menu #Remainder_t class="remainder-menu-2">
           <div>
             <mat-icon style="margin-right: 10px;" class="material-icons" [matMenuTriggerFor]="Remainder" (click)="$event.stopPropagation()">arrow_back</mat-icon>
             <p class="r-par">Pick date & time</p>
@@ -164,7 +164,7 @@ class="n-mat"
           [matMenuTriggerFor]="Color"
           >color_lens</i
         >
-        <mat-menu #Color="matMenu" class="r-option" yPosition="above">
+        <mat-menu #Color="matMenu" class="color-menu" yPosition="above">
           <div
             class="a-color"
             *ngFor="let color of colourArr"

@@ -8,6 +8,7 @@ import { NativeDateAdapter, DateAdapter,
   MAT_DATE_FORMATS } from '@angular/material/core';
  import { formatDate } from '@angular/common';
  import { DatePipe } from '@angular/common';
+import { DataserviceService } from 'src/app/Service/dataService/dataservice.service';
  
  export const PICK_FORMATS = {
    parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -62,7 +63,8 @@ export class IconComponent implements OnInit {
   temp:any;
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
-    private snack:MatSnackBar, public datepipe: DatePipe) { }
+    private snack:MatSnackBar, public datepipe: DatePipe
+    ,private data:DataserviceService) { }
   @Input() notes!:any;
   ngOnInit(): void {
     this.getFromLocalStorage();
@@ -85,13 +87,16 @@ export class IconComponent implements OnInit {
     console.log(this.addRemainder)
     this.noteservice.setRemainder(notes['notesId'],this.addRemainder)
     .subscribe((result:any)=>{
+      this.data.changeMessage(true);
       this.snack.open(result.message,'',{duration:3000});
     })
    }
    deleteRemainder(note:any){
       this.noteservice.deleteReaminder(note['notesId']).
       subscribe((result:any)=>{
+        this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
+
       })
    }
    set(note:any){
@@ -99,6 +104,7 @@ export class IconComponent implements OnInit {
     console.log(this.startDate)
     this.noteservice.setRemainder(note['notesId'],"Today, 8:00AM")
     .subscribe((result:any)=>{
+      this.data.changeMessage(true);
       this.snack.open(result.message,'',{duration:3000});
     })
    }
@@ -107,6 +113,7 @@ export class IconComponent implements OnInit {
     this.startDate.setDate(this.startDate.getDate()+1); 
     this.noteservice.setRemainder(notes['notesId'],"Tommorrow, 8:00AM")
     .subscribe((result:any)=>{
+      this.data.changeMessage(true);
       this.snack.open(result.message,'',{duration:3000});
     })
    }
@@ -129,6 +136,7 @@ export class IconComponent implements OnInit {
     this.addRemainder = data+", "+time
     this.noteservice.setRemainder(notes['notesId'],this.addRemainder)
     .subscribe((result:any)=>{
+      this.data.changeMessage(true);
       this.snack.open(result.message,'',{duration:3000});
     })
    }
@@ -138,6 +146,7 @@ export class IconComponent implements OnInit {
     notes['is_Pin'] = !this.pinned;
     this.noteservice.pin(notes.notesId).
     subscribe((result:any)=>{
+      this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
     })
   }
@@ -147,6 +156,7 @@ export class IconComponent implements OnInit {
     notes['is_Archive'] = !this.isarchive;
     this.noteservice.archive(notes.notesId).
     subscribe((result:any)=>{
+      this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
     })
   }
@@ -156,6 +166,7 @@ export class IconComponent implements OnInit {
     console.log(note['color'])
     this.noteservice.updatecolor(note.notesId,color)
     .subscribe((result:any)=>{
+      this.data.changeMessage(true);
       this.snack.open(result.message,'',{duration:3000})
     })
     }
@@ -187,6 +198,7 @@ export class IconComponent implements OnInit {
         console.log(col);
       this.noteservice.addCollab(note,col)
       .subscribe((result:any)=>{
+        this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
       })
     }
@@ -194,11 +206,9 @@ export class IconComponent implements OnInit {
     addTrash(note:any){
       this.noteservice.addTrash(note['notesId']).
       subscribe((result:any)=>{
+        this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
       })
-    }
-    addImages(data:any){
-      console.log(data); 
     }
 }
 

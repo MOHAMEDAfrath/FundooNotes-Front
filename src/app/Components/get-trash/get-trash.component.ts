@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataserviceService } from 'src/app/Service/dataService/dataservice.service';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 
 @Component({
@@ -10,10 +11,18 @@ import { NotesService } from 'src/app/Service/notesService/notes.service';
 export class GetTrashComponent implements OnInit {
 
   constructor(private noteservice:NotesService,
-    private snack : MatSnackBar) { }
+    private snack : MatSnackBar,
+    private data:DataserviceService) { }
   trashNotes=[];
   ngOnInit(): void {
     this.getTrash()
+    this.data.currentMessage.subscribe((change)=>{
+      if(change == true){
+        this.getTrash();
+        this.data.changeMessage(false);
+      }
+  })
+    
   }
   getTrash(){
     this.noteservice.getTrash().
@@ -25,21 +34,22 @@ export class GetTrashComponent implements OnInit {
   restore(data:any){
     this.noteservice.restore(data['notesId']).
     subscribe((result:any)=>{
+      this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
-        this.ngOnInit();
     })
   }
   deleteFromTrash(data:any){
     this.noteservice.deleteFromTrash(data['notesId'])
     .subscribe((result:any)=>{
+      this.data.changeMessage(true);
       this.snack.open(result.message,'',{duration:3000});
-      this.ngOnInit();
     })
   }
   emptyTrash(){
     var user = JSON.parse(localStorage.getItem('FundooUser')!);
     this.noteservice.emptyTrash(user.userId).
     subscribe((result:any)=>{
+      this.data.changeMessage(true);
       this.snack.open(result.message,'',{duration:3000});
     })
   }

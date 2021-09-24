@@ -4,6 +4,7 @@ import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { MatDialog } from '@angular/material/dialog';
  import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataserviceService } from 'src/app/Service/dataService/dataservice.service';
 
 @Component({
   selector: 'app-getnotecomponent',
@@ -17,11 +18,19 @@ export class GetnotecomponentComponent implements OnInit {
   event:any;
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
-    private snack : MatSnackBar
+    private snack : MatSnackBar,
+    private data: DataserviceService
     ) { }
     userNotes = [];
   ngOnInit(): void {
     this.getUserNotes();
+    this.data.currentMessage.subscribe((change)=>{
+        if(change == true){
+          this.getUserNotes();
+          this.data.changeMessage(false);
+        }
+    })
+    
   }
  
 getUserNotes(){

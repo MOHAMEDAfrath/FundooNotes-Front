@@ -56,7 +56,8 @@ import { GetnotebylabelComponent } from './Components/getnotebylabel/getnotebyla
     GetRemainderComponent,
     GetTrashComponent,
     IconComponent,
-    GetnotebylabelComponent
+    GetnotebylabelComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

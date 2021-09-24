@@ -10,6 +10,7 @@ import { NativeDateAdapter, DateAdapter,
  import { MatDialog } from '@angular/material/dialog';
 import { NotesService } from 'src/app/Service/notesService/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataserviceService } from 'src/app/Service/dataService/dataservice.service';
  export const PICK_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
   display: {
@@ -70,7 +71,8 @@ export class NotesdialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data:any,
     private dialogRef: MatDialogRef<NotesdialogComponent>,
     private noteservice : NotesService,
-    private snack:MatSnackBar) { }
+    private snack:MatSnackBar,
+    private dataService:DataserviceService) { }
 
   ngOnInit(): void {
     this.NotesForm = new FormGroup({
@@ -147,11 +149,11 @@ export class NotesdialogComponent implements OnInit {
  }
  
    update(){
-    //this.dialogRef.close(this.data.collab);
       if (this.NotesForm.value.title != '' || this.NotesForm.value.Desc != '') {
         this.noteservice
           .updateNotes(this.data.notes.notesId,this.NotesForm.value,this.pinned,this.isarchive,this.setColor,this.addRemainder,this.imageUrl)
           .subscribe((result: any) => {
+            this.dataService.changeMessage(true);
               this.snack.open(result.message, '', { duration: 3000 });
           });
       }
