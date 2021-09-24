@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   clickSearch = true;
   searchIcon = true;
   userLabels = [];
+  labelDetails:any;
   constructor(private route : Router,private noteservice: NotesService) { }
 
   ngOnInit(): void {

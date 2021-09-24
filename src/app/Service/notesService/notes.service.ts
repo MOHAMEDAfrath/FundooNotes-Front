@@ -12,7 +12,6 @@ export class NotesService {
   constructor(private httpService: HttpserviceService,
     ) { }
   CreateNote(data: any,pin:boolean,archive:boolean,color:string,remainder:string) {
-   
     let params = {
       Title: data.title,
       Notes: data.Desc,
@@ -137,6 +136,10 @@ export class NotesService {
     }
     this.getToken();
     return this.httpService.put(`${environment.baseUrl}/api/UpdateNote`,params,true,this.header);
+  }
+  getNotesByLabel(user:any,label:any){
+      let params = new HttpParams().set('userId',user).set('labelName',label);
+      return this.httpService.post(`${environment.baseUrl}/api/getNotesByLabel`,params,true,this.header);
   }
 }
 

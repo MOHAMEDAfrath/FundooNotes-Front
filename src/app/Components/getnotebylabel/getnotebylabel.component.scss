@@ -1,0 +1,274 @@
+.card-disp{
+    width: 250px;
+    margin: 10px;
+    height: max-content;
+    min-height: 100px;
+    max-height: 300px;
+    box-shadow: none;
+    border: 1.5px solid #a8aaad79;
+    border-radius: 10px !important;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 10px 40px;
+    &:hover{
+      &::before{
+        content: '';
+        position:absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(200, 200, 200, 0.05);
+      }
+      .over-con{
+        opacity: 1;
+      }
+    }
+  
+    .over-con{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      transition: opacity 0.2s ease-in;
+      opacity: 0;
+      .i-pin{
+        align-self: flex-end;
+        padding: 5px;
+      }
+      .i-div{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        i {
+          padding: 5px 5px;
+          cursor: pointer;
+          color: rgba(0, 0, 0, 0.75);
+          &:hover {
+            background-color: #eee;
+            border-radius: 50%;
+          }
+        }
+      }
+  }
+    .d-con{
+      min-height: 40px;
+      max-height: 200px;
+      overflow: hidden;
+    }
+  
+  }
+  .remainder-but{
+    display: flex;
+    justify-content: space-between;
+    p{
+      color: #3c4043;
+    }
+  }
+  .chip-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ddd;
+    width: max-content;
+    padding: 4px 10px;
+    border-radius: 15px;
+    p{
+      margin: 0px;
+      margin-left: 5px;
+    }
+    .chip-but{
+      border: none;
+      background: none;
+      padding: 0px 2px;
+      margin-top: 5px;
+      display: none;
+    }
+    i{
+      font-size: 17px;
+      color: rgba(0,0,0,0.65);
+      &:hover{
+        border-radius: 50%;
+      }
+    }
+    &:hover{
+      .chip-but{
+        display: block;
+      }
+    }
+    
+  }
+  .chips{
+    display: flex;
+    div{
+      margin-right: 5px;
+    }
+  }
+  .pin-head{
+    text-align: left;
+    padding-left: 100px;
+    margin-bottom: 0px !important;
+  }
+  .head-div{
+    padding: 10px 0px;
+  }
+  .overall-div{
+    display:flex;
+    flex-wrap: wrap;
+    padding: 0px 80px !important;
+    padding-bottom: 40px !important;
+     justify-items: center; 
+     align-items: flex-start;
+  }
+  ::ng-deep .remainder-menu .mat-menu-content{
+    max-width: 300px !important;
+    width: 300px !important;
+    overflow: hidden !important;
+   .r-par{
+    align-self: flex-start;
+    margin-left: 15px;
+    padding-top: 5px;
+    font-family: 'Roboto',sans-serif;
+   }
+  }
+  ::ng-deep .remainder-menu {
+    max-width: 300px;
+  }
+  ::ng-deep .remainder-menu-2 .mat-menu-content{
+    div{
+      display: flex;
+      align-items: center;
+      padding: 9px;
+      mat-icon{
+        &:focus-visible{
+          background: none ;
+        }
+      }
+      p{
+        margin-bottom: 0px;
+        margin-left: 3px;
+      }
+    }
+  }
+  
+  .date-pick{
+    padding: 0px;
+    width: 95%;
+    margin-top: 5px;
+    ::ng-deep .mat-form-field-wrapper{
+      margin-bottom: 0px !important;
+    }
+  }
+  .time-pick{
+    border: none;
+    background: none;
+    display: flex;
+  
+  }
+  .time-div{
+    display: flex;
+    justify-content: space-between;
+    width: 246px;
+  }
+  .time-but{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .time-d{
+    font-family: 'Roboto' sans-serif;
+    font-size: 14px;
+    border: none;
+    background-color: transparent;
+    &:focus-visible{
+      outline: none;
+    }
+  }
+  .timeOption{
+    padding: 10px;
+    width: 250px;
+    display: none !important;
+    background-color: white;
+    .option{
+      display: flex;
+    justify-content: space-between;
+    &:hover{
+        cursor: pointer;
+        background-color: #ddd;
+    }
+    }
+  }
+  .timeOption.active{
+    position:fixed;
+    display: block !important;
+    top: 57%;
+    left: 39.52%;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2),
+    1px 1px 1px 1px rgba(0, 0, 0, 0.19);
+  }
+  .but-time{
+    position: relative;
+  }
+  ::ng-deep .color-menu .mat-menu-content{
+    width: 180px;
+    padding: 8px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  .a-color{
+    width: 32px;
+    height: 32px;
+    border-radius:50%;
+    margin: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+      border: 1px solid black;
+    }
+    &:nth-child(1){
+      border: 1px solid black;
+    }
+    i{
+      color: gray;
+    }
+  }
+  .date-pick{
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    &:hover{
+      background: none;
+    }
+    ::ng-deep .mat-form-field-flex{
+      background: none !important;
+    }
+  }
+  ::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: rgb(133, 129, 129) !important;
+   }
+   
+   ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: rgb(133, 129, 129) !important;;
+   }
+   
+   ::ng-deep .mat-form-field-label {
+    /*change color of label*/
+    color: rgb(133, 129, 129) !important;
+   }
+  
+  
+  .d-picker{
+    display: flex !important;
+    justify-content: space-between !important;
+  }
