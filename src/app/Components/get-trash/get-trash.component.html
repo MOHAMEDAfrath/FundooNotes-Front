@@ -6,10 +6,10 @@
     class="card-disp"
     *ngFor="let trash of trashNotes"
      [ngStyle]="{'background-color':trash['color']}" >
-    <div class="d-tit">
+    <div class="d-tit" style="font-weight: bold;">
       {{trash['title']}}
     </div>
-    <div class="d-con">
+    <div class="d-con" style="margin-bottom: 15px;">
         {{trash['notes']}}
     </div>
     <div class="over-con">

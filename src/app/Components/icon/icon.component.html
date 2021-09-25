@@ -1,4 +1,8 @@
 <div class="over-con">
+  <div style="display: flex;justify-content: space-between;">
+    <i class="material-icons" *ngIf="notes['image']!='' && notes['image']!=null" (click)="removeImage(notes['notesId'])">delete</i>
+    <i></i>
+   <div> 
   <i
     style="cursor: pointer"
     class="material-icons-outlined i-pin"
@@ -13,6 +17,8 @@
     (click)="$event.stopPropagation(); pinned = !pinned; pin(notes)"
     >push_pin</i
   >
+  </div>
+  </div>
   <div>
     <div class="chips">
       <div class="chip-div" *ngIf="notes['remainder']!=null && notes['remainder']!=''">

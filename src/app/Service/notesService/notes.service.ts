@@ -146,5 +146,10 @@ export class NotesService {
         this.getToken();
         return this.httpService.post(`${environment.baseUrl}/api/deleteCollaborator`,params,true,this.header);
   }
+  removeImage(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/removeImage`,params,true,this.header);
+  }
 }
 

@@ -8,10 +8,10 @@
         *ngFor="let notes of userNotes"
         >
         <img src='{{notes["image"]}}' alt="" *ngIf="notes['image']!=null && notes['image']!=' '" style="width: 100%;">
-        <div class="d-tit">
+        <div class="d-tit" style="font-weight: bold;">
           {{ notes["title"] }}
         </div>
-        <div class="d-con">
+        <div class="d-con" style="margin-bottom: 15px;">
           {{ notes["notes"] }}
         </div>
        <app-icon [notes]="notes"></app-icon>

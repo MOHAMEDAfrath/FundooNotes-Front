@@ -233,5 +233,12 @@ export class IconComponent implements OnInit {
       })
 
     }
+    removeImage(data:any){
+      this.noteservice.removeImage(data).
+      subscribe((result:any)=>{
+        this.data.changeMessage(true);
+        console.log(result);
+      })
+    }
 }
 
