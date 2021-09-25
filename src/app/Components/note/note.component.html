@@ -82,7 +82,7 @@
         </button>
       </div>
       <div  *ngFor="let person of collaboratorArr">
-        <i style="color: blue;" class="material-icons" [matTooltip]="'Shared with '+person">person_pin</i>
+        <i style="color: blue;" class="material-icons" [matTooltip]="'Shared with '+person['colEmail']">person_pin</i>
       </div>
       </div>
     </form>
@@ -224,7 +224,7 @@
       <button
         mat-button
         (click)="
-          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';addRemainder='';pinned=false;isarchive=false;collaboratorArr=[]">
+          createNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';addRemainder='';pinned=false;isarchive=false;">
         Close
       </button>
     </div>

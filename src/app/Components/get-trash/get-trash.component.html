@@ -1,6 +1,6 @@
 <div class="overall-div">
   <div class="empty">
-  <button mat-button style="width: 180px;" (click)="emptyTrash()">Empty Trash</button>
+  <button mat-button style="width: 180px;" *ngIf="trashNotes.length>0" (click)="emptyTrash()">Empty Trash</button>
   </div>
     <mat-card
     class="card-disp"

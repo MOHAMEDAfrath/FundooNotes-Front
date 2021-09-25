@@ -94,6 +94,16 @@ export class NoteComponent implements OnInit {
             if(this.imageLink.length>0){
             this.addImage(result.notesId);
             }
+            if(this.collaboratorArr.length > 0){
+              console.log(result)
+              for(let col of this.collaboratorArr){
+                this.noteservice.addCollab(result.notesId,col)
+                .subscribe((result:any)=>{
+                  this.collaboratorArr=[];
+                  this.snackBar.open(result.message,'',{duration:3000});
+                })
+              }
+            }
             this.data.changeMessage(true);
             this.snackBar.open(result.message, '', { duration: 3000 });
           }
@@ -113,7 +123,7 @@ export class NoteComponent implements OnInit {
       })
   }
   openDialog(){
-     let dialogref = this.dialog.open(DialogComponent,{data:{name : this.name,email:this.email, collab: this.collaboratorArr}});
+     let dialogref = this.dialog.open(DialogComponent,{data:{name : this.name,email:this.email, collab: this.collaboratorArr,delete:false}});
      dialogref.afterClosed().subscribe((result)=>{
        console.log(result);
        this.collaboratorArr = result;

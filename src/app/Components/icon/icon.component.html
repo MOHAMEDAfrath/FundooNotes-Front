@@ -187,8 +187,8 @@
           >
         </div>
       </mat-menu>
-      <label for="temp">
-      <input type="file" id = "temp" name="temp" style="display: none;">
+      <label (click)="AddImage()">
+      <input type="file" id = "temp" name="temp" style="display: none;" (change)="onFileChange($event)">
       <i class="material-icons-outlined">image</i>
       </label>
       <i

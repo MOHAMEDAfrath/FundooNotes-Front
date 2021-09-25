@@ -134,12 +134,17 @@ export class NotesService {
       Is_Pin:pin,
       image:image
     }
-    this.getToken();
     return this.httpService.put(`${environment.baseUrl}/api/UpdateNote`,params,true,this.header);
   }
   getNotesByLabel(user:any,label:any){
       let params = new HttpParams().set('userId',user).set('labelName',label);
+      this.getToken();
       return this.httpService.post(`${environment.baseUrl}/api/getNotesByLabel`,params,true,this.header);
+  }
+  deleteColab(colab:any){
+        let params = new HttpParams().set('colId',colab);
+        this.getToken();
+        return this.httpService.post(`${environment.baseUrl}/api/deleteCollaborator`,params,true,this.header);
   }
 }
 

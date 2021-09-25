@@ -16,10 +16,10 @@
         <i class="material-icons ownerIcon">person</i>
     </div>
     <div style="display: flex; align-items: center;">
-    <p class="o-email">{{colab}}</p>
+    <p class="o-email">{{colab.colEmail}}</p>
     </div>
     </div>
-    <i class="material-icons icon clear" (click)="data.collab.splice(data.collab.indexOf(colab),1)">clear</i>
+    <i class="material-icons icon clear" (click)="clear(colab)">clear</i>
 </div>
 <div class="owner addperson">
     <div>

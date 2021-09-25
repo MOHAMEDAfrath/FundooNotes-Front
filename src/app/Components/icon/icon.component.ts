@@ -61,6 +61,7 @@ export class IconComponent implements OnInit {
   timeValue = "8:00AM"
   usernotes=[];
   temp:any;
+  execute = false;
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
     private snack:MatSnackBar, public datepipe: DatePipe
@@ -184,7 +185,7 @@ export class IconComponent implements OnInit {
         if(this.collaboratorArr ==null){
           this.collaboratorArr = [];
         }
-      let dialogref = this.dialog.open(DialogComponent,{data:{name : this.Name,email:this.Email, collab: this.collaboratorArr}});
+      let dialogref = this.dialog.open(DialogComponent,{data:{name : this.Name,email:this.Email, collab: this.collaboratorArr,notesId:notes['notesId'],delete:true}});
       dialogref.afterClosed().subscribe((result)=>{
         console.log(result);
         this.collaboratorArr = result;
@@ -196,7 +197,7 @@ export class IconComponent implements OnInit {
     addColab(note:any,colab:any){
       for(let col of colab){
         console.log(col);
-      this.noteservice.addCollab(note,col)
+      this.noteservice.addCollab(note,col.colEmail)
       .subscribe((result:any)=>{
         this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
@@ -209,6 +210,28 @@ export class IconComponent implements OnInit {
         this.data.changeMessage(true);
         this.snack.open(result.message,'',{duration:3000});
       })
+
+    }
+    AddImage(){
+      if(this.execute == true){
+        return;
+      }
+      this.execute = true;
+
+    }
+    onFileChange(event:any){
+      var files: File=event.target.files.item(0);
+      console.log(event.target.files.item(0));
+      const form = new FormData();
+      form.append('image',files,files.name);
+      console.log(form)
+      this.noteservice.addImage(this.notes['notesId'],form).
+      subscribe((result:any)=>{
+        this.data.changeMessage(true);
+        console.log(result);
+        this.execute = false;
+      })
+
     }
 }
 
