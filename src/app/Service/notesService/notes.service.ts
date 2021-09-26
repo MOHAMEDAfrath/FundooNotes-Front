@@ -151,5 +151,48 @@ export class NotesService {
     this.getToken();
     return this.httpService.put(`${environment.baseUrl}/api/removeImage`,params,true,this.header);
   }
+  addLabelToNote(data:any,label:any){
+    let params = {
+      NotesId : data,
+      LabelName: label,
+      UserId : this.user.userId
+    }
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/AddLabelToNote`,params,true,this.header);
+  }
+  getLabelForNotes(data:any){
+    let params = new HttpParams().set('notesId',data);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/GetLabelByNote`,params,true,this.header);
+  }
+  removeLabel(data:any){
+    let params = new HttpParams().set('labelId',data);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/DeleteaLabelFromNote`,params,true,this.header);
+  }
+  addLabel(user:any,label:any){
+    let params = {
+      UserId:user,
+      LabelName:label
+    }
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/addLabel`,params,true,this.header);
+    
+  }
+  deleteLabel(data:any){
+    let params = new HttpParams().set('userId',this.user.userId).set('labelName',data);
+    this.getToken();
+    return this.httpService.post(`${environment.baseUrl}/api/delLabel`,params,true,this.header);
+  }
+  editLabel(data:any,label:any){
+    let params = {
+      UserId :this.user.userId,
+      LabelId:data['labelId'],
+      LabelName:label
+    
+    }
+    this.getToken();
+    return this.httpService.put(`${environment.baseUrl}/api/editLabel`,params,true,this.header);
+  }
 }
 

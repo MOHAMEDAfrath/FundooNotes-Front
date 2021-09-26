@@ -40,6 +40,7 @@ import { GetRemainderComponent } from './Components/get-remainder/get-remainder.
 import { GetTrashComponent } from './Components/get-trash/get-trash.component';
 import { IconComponent } from './Components/icon/icon.component';
 import { GetnotebylabelComponent } from './Components/getnotebylabel/getnotebylabel.component';
+import { EditDialogComponent } from './Components/edit-dialog/edit-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { GetnotebylabelComponent } from './Components/getnotebylabel/getnotebyla
     GetTrashComponent,
     IconComponent,
     GetnotebylabelComponent,
+    EditDialogComponent,
 
   ],
   imports: [
@@ -85,7 +87,7 @@ import { GetnotebylabelComponent } from './Components/getnotebylabel/getnotebyla
     MatNativeDateModule,
     MatSelectModule
   ],
-  entryComponents:[DialogComponent,NotesdialogComponent],
+  entryComponents:[DialogComponent,NotesdialogComponent,EditDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

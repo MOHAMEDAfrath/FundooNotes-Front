@@ -9,7 +9,8 @@ import { NativeDateAdapter, DateAdapter,
  import { formatDate } from '@angular/common';
  import { DatePipe } from '@angular/common';
 import { DataserviceService } from 'src/app/Service/dataService/dataservice.service';
- 
+import { HttpErrorResponse } from '@angular/common/http';
+
  export const PICK_FORMATS = {
    parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
    display: {
@@ -61,7 +62,12 @@ export class IconComponent implements OnInit {
   timeValue = "8:00AM"
   usernotes=[];
   temp:any;
+  userLabels = [];
+  labelName = "";
   execute = false;
+  checked = false;
+  noteLabel = [];
+  checkedLabel :any = [];
   constructor(private noteservice:NotesService,
     private dialog:MatDialog,
     private snack:MatSnackBar, public datepipe: DatePipe
@@ -69,7 +75,7 @@ export class IconComponent implements OnInit {
   @Input() notes!:any;
   ngOnInit(): void {
     this.getFromLocalStorage();
-    this.getDate()
+    this.getDate();
   }
   async getFromLocalStorage(){
     var user = JSON.parse(localStorage.getItem("FundooUser")!);
@@ -239,6 +245,83 @@ export class IconComponent implements OnInit {
         this.data.changeMessage(true);
         console.log(result);
       })
+    }
+    getLabels(){
+      this.noteservice.getLabels().
+      subscribe((result:any)=>{
+          this.userLabels = result.data;
+          console.log(result)
+      })
+    }
+    addLabelToNote(data:any){
+      this.noteservice.addLabelToNote(data,this.labelName).
+      subscribe((result:any)=>{
+        this.data.changeMessage(true);
+        console.log(result);
+      })
+    }
+    getLabelForNotes(data:any){
+      this.noteservice.getLabelForNotes(data).
+      subscribe((result:any)=>{
+        this.noteLabel = result.data;
+        if(this.noteLabel!=null){
+        for(let ul of this.userLabels){
+          var isMatch = false;
+          for(let nl of this.noteLabel){
+                if(ul['labelName'] == nl['labelName']){
+                    let lebel = {
+                      id : nl['labelId'],
+                      labelName : nl['labelName'],
+                      checked:true
+                    }
+                    isMatch = true;
+                    this.checkedLabel.push(lebel);
+                    break;
+                }
+          }
+          if(!isMatch){
+            let lebel = {
+              id: ul['labelId'],
+              labelName : ul['labelName'],
+              checked:false
+            }
+            this.checkedLabel.push(lebel);
+          }
+        }
+      }else{
+        for(let ul of this.userLabels){
+          let lebel = {
+            id: ul['labelId'],
+            labelName : ul['labelName'],
+            checked:false
+          }
+          this.checkedLabel.push(lebel);
+        }
+      }
+        console.log(this.checkedLabel)
+      },(error: HttpErrorResponse) => {
+      })
+
+    }
+
+    addOrRemoveLabel(check:any,noteId:any,label:any){
+      if(check){
+        console.log("add");
+        this.noteservice.addLabelToNote(noteId,label['labelName']).
+      subscribe((result:any)=>{
+        this.data.changeMessage(true);
+        console.log(result);
+      })
+
+      }else{
+        console.log("remove");
+        console.log(label['id']);
+        this.noteservice.removeLabel(label['id'])
+        .subscribe((result:any)=>{
+          this.data.changeMessage(true);
+          console.log(result);
+        })
+      }
     }
 }
 

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog/dialog.component';
 import { FormGroup } from '@angular/forms';
 import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 
 
@@ -17,6 +18,7 @@ import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
 export class HomeComponent implements OnInit {
   Name = '';
   Email = '';
+  userId=0;
   isGrid = true;
   isSearch = false;
   isOption = 1;
@@ -28,7 +30,8 @@ export class HomeComponent implements OnInit {
   searchIcon = true;
   userLabels = [];
   labelDetails:any;
-  constructor(private route : Router,private noteservice: NotesService) { }
+  constructor(private route : Router,private noteservice: NotesService,
+    public dialog : MatDialog,) { }
 
   ngOnInit(): void {
     this.checkLocalStorage()
@@ -39,6 +42,7 @@ export class HomeComponent implements OnInit {
       var user = JSON.parse(localStorage.getItem("FundooUser")!);
       this.Name = user.userName;
       this.Email = user.emailId;
+      this.userId= user.userId;
   }
   Logout(){
     var user = JSON.parse(localStorage.getItem("FundooUser")!);
@@ -64,4 +68,7 @@ export class HomeComponent implements OnInit {
         console.log(result)
     })
   }
+  openDialog(){
+    let dialogref = this.dialog.open(EditDialogComponent,{data:{userId:this.userId,labels: this.userLabels}});
+ }
 }

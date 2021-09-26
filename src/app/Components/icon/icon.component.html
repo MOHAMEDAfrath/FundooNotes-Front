@@ -207,7 +207,7 @@
       class="material-icons-outlined more"
       matTooltip="More"
       [matMenuTriggerFor]="menu"
-      (click)="$event.stopPropagation()"
+      (click)="$event.stopPropagation();getLabels()"
       >more_vert</i
     >
     <mat-menu #menu="matMenu" class="i-option">
@@ -217,7 +217,17 @@
       >
         Delete Notes
       </button>
-      <button mat-menu-item>Add Label</button>
+      <button mat-menu-item [matMenuTriggerFor]="add" (click)="getLabelForNotes(notes['notesId'])" >Add Label</button>
+      <mat-menu #add="matMenu" class="label-option">
+        <p>Label Note</p>
+        <button mat-button  (click)="$event.stopPropagation()">
+            <input type="text" placeholder="Enter Label Name" [(ngModel)]="labelName"/>
+            <i class="material-icons t-icons" *ngIf="labelName.length>0" (click)="addLabelToNote(notes['notesId'])">check</i> 
+        </button>
+             <button mat-button *ngFor="let label of checkedLabel"  (click)="$event.stopPropagation()">
+           <input type="checkbox" name="" id="" [checked]="label['checked']" (change)="checked = label['checked']?false:true;addOrRemoveLabel(checked,notes['notesId'],label)">{{label['labelName']}}
+        </button>
+      </mat-menu>
       <button
         mat-menu-item
       >

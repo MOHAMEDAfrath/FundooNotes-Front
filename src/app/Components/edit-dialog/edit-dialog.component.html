@@ -1,0 +1,26 @@
+<div style="width: 300px;height:100%;padding: 10px;" >
+    <p style="margin-left: 10px;">Edit Labels</p>
+    <div style="display: flex;justify-content: space-between; flex-direction: column;align-items: center;">
+        <div *ngIf="!click" (click)= "click=!click" style="display: flex;align-self: flex-start;justify-content: center; margin-left: 26px;">
+            <i class="material-icons" style="cursor: pointer;margin-right: 5px;">add</i>
+            <p>Create new Label</p>
+        </div>
+    <div *ngIf="click" style="display: flex; justify-content: space-between;width: 80%;">
+        <i class="material-icons" (click)="labelName='';click=!click" style="cursor: pointer;">clear</i>
+        <input type="text" class="label" placeholder="Create new Label" [(ngModel)]="labelName" />
+        <i></i>
+        <i class="material-icons t-icons" *ngIf="labelName.length>0" (click)="addLabel()" style="cursor: pointer;">check</i> 
+    </div>
+    <div *ngFor="let label of this.data.labels" style="display: flex;justify-content: space-between;width: 80%;margin-top: 15px;">
+        <i class="material-icons del-i" (click)="deleteLabel(label)" style="cursor: pointer;">delete</i>
+        <input type="text" name="" id="" class="edit" [value]="label['labelName']" (change)="change($event)">
+        <i class="material-icons-outlined edit-i" *ngIf="!edit"  (click)="edit = true" style="cursor: pointer;">edit</i>
+        <i class="material-icons t-icons" *ngIf="edit" (click)="editLabel(label)" style="cursor:pointer;">check</i> 
+    </div>
+    <mat-divider></mat-divider>
+    <div style="display: flex;justify-content: space-between;width: 100%;padding: 5px;border-top: 1px solid;margin-top: 15px;">
+        <div></div>
+        <button mat-button mat-dialog-close>Done</button>
+    </div>
+    </div>
+</div>

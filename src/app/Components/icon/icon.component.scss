@@ -1,0 +1,15 @@
+::ng-deep .label-option .mat-menu-content{
+    display: flex;
+    padding: 15px !important;
+    flex-direction: column;
+    button{
+        display: flex;
+        padding-left: 0px;
+        input{
+            border: none;
+            &:focus-visible{
+                outline: none;
+            }
+        }
+    }
+}

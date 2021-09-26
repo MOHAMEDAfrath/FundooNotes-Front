@@ -1,0 +1,14 @@
+.label{
+    border: none;
+    border-bottom: 1px solid;
+    &:focus-visible{
+        outline: none;
+    }
+}
+.edit{
+    border: none;
+    &:focus-visible{
+        outline: none;
+        border-bottom: 1px solid;
+    }
+}
